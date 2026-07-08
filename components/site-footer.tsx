@@ -1,17 +1,34 @@
+import Link from 'next/link'
 import { Landmark } from 'lucide-react'
+import { siteConfig } from '@/lib/site-config'
 
 const footerLinks = [
   {
     title: 'Serviços',
-    links: ['Registro de Imóveis', 'Emissão de Certidões', 'Averbação', 'Usucapião'],
+    links: [
+      { label: 'Registro de Imóveis', href: '/#servicos' },
+      { label: 'Emissão de Certidões', href: '/#servicos' },
+      { label: 'Averbação', href: '/#servicos' },
+      { label: 'Usucapião', href: '/#servicos' },
+    ],
   },
   {
     title: 'Institucional',
-    links: ['Sobre o Cartório', 'Tabela de Emolumentos', 'Perguntas Frequentes', 'Ouvidoria'],
+    links: [
+      { label: 'Sobre o Cartório', href: '/sobre' },
+      { label: 'Tabela de Emolumentos', href: '/emolumentos' },
+      { label: 'Perguntas Frequentes', href: '/faq' },
+      { label: 'Ouvidoria', href: '/ouvidoria' },
+    ],
   },
   {
     title: 'Atendimento',
-    links: ['Fale no WhatsApp', 'Agendar visita', 'Enviar documentos', 'Localização'],
+    links: [
+      { label: 'Fale no WhatsApp', href: siteConfig.whatsappUrl, external: true },
+      { label: 'Agendar visita', href: '/agendar' },
+      { label: 'Enviar documentos', href: '/enviar-documentos' },
+      { label: 'Localização', href: '/#contato' },
+    ],
   },
 ]
 
@@ -41,16 +58,29 @@ export function SiteFooter() {
                 {column.title}
               </h3>
               <ul className="mt-4 space-y-2.5">
-                {column.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {column.links.map((link) =>
+                  link.external ? (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ) : (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
           ))}

@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Lora } from 'next/font/google'
+import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
 const geistSans = Geist({
@@ -14,7 +15,7 @@ const lora = Lora({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://SEU-DOMINIO.com.br'),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: 'Registro de Imóveis de Bom Conselho - PE',
     template: '%s | Cartório de Registro de Imóveis de Bom Conselho',

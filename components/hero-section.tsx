@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { MessageCircle, MapPin, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { siteConfig } from '@/lib/site-config'
 
 export function HeroSection() {
   return (
@@ -39,7 +40,7 @@ export function HeroSection() {
               className="h-12 bg-accent px-6 text-base text-accent-foreground hover:bg-accent/90"
               render={
                 <a
-                  href="https://wa.me/5587981198252"
+                  href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
