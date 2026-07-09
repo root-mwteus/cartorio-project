@@ -56,7 +56,31 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   colorScheme: 'light',
-  themeColor: '#1e293b',
+  themeColor: '#5c1e22',
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'GovernmentOffice',
+  name: siteConfig.name,
+  image: `${siteConfig.url}/cartorio-hero.png`,
+  url: siteConfig.url,
+  telephone: siteConfig.phoneDisplay,
+  email: siteConfig.email.general,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: siteConfig.address.street,
+    addressLocality: siteConfig.address.city,
+    addressRegion: siteConfig.address.state,
+    postalCode: siteConfig.address.postalCode,
+    addressCountry: 'BR',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
 }
 
 export default function RootLayout({
@@ -65,10 +89,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${lora.variable} bg-background`}>
+    <html lang="pt-BR" className={`${geistSans.variable} ${lora.variable} light bg-background`}>
       <body className="font-sans antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          Pular para o conteúdo
+        </a>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   )

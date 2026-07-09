@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <div className="flex min-h-dvh flex-col">
       <SiteHeader />
-      <main>
+      <main id="main">
         <HeroSection />
         <ServicesGrid />
         <PrepareSection />

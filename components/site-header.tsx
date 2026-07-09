@@ -66,10 +66,10 @@ export function SiteHeader() {
           nativeButton={false}
           className="hidden h-9 px-4 sm:inline-flex"
           render={
-            <a href="/#contato">
+            <Link href="/#contato">
               <Phone className="h-4 w-4" aria-hidden="true" />
               Fale conosco
-            </a>
+            </Link>
           }
         />
       </div>

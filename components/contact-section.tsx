@@ -11,8 +11,8 @@ const contactCards = [
     icon: MapPin,
     title: 'Endereço',
     lines: [
-      'Av. Ten. Raul de Holanda Cavalcante, 108',
-      'Centro — Bom Conselho/PE, CEP 55330-000',
+      siteConfig.address.street,
+      `${siteConfig.address.neighborhood} — ${siteConfig.address.city}/${siteConfig.address.state}, CEP ${siteConfig.address.postalCode}`,
     ],
   },
   {
