@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
+import { InstitutionalPageHeader } from '../_components/page-header'
 
 export const metadata: Metadata = {
   title: 'Agendar Visita',
@@ -12,12 +13,7 @@ export const metadata: Metadata = {
 export default function AgendarPage() {
   return (
     <article>
-      <span className="text-sm font-semibold uppercase tracking-wide text-accent">
-        Institucional
-      </span>
-      <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-        Agendar Visita
-      </h1>
+      <InstitutionalPageHeader title="Agendar Visita" />
       <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted-foreground">
         <p>
           O atendimento presencial pode ser agendado com antecedência, o que

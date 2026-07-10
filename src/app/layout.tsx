@@ -89,7 +89,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${lora.variable} light bg-background`}>
+    <html
+      lang="pt-BR"
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${lora.variable} light scroll-smooth bg-background`}
+    >
       <body className="font-sans antialiased">
         <a
           href="#main"

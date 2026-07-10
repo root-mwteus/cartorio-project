@@ -61,6 +61,11 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
 
   return (
     <form action={formAction} className="grid gap-5" aria-busy={isPending}>
+      <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] top-0">
+        <label htmlFor="website">Não preencha este campo</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid gap-2">
         <label htmlFor="name" className="text-sm font-medium text-card-foreground">
           Nome completo
@@ -70,6 +75,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           name="name"
           type="text"
           required
+          maxLength={100}
           autoComplete="name"
           placeholder="Seu nome"
           className={inputClass}
@@ -85,6 +91,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           name="email"
           type="email"
           required
+          maxLength={254}
           autoComplete="email"
           placeholder="voce@email.com"
           className={inputClass}
@@ -100,6 +107,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           name="subject"
           type="text"
           required
+          maxLength={150}
           placeholder="Ex: Emissão de certidão"
           className={inputClass}
         />
@@ -113,6 +121,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           id="message"
           name="message"
           required
+          maxLength={2000}
           rows={5}
           placeholder="Descreva sua dúvida ou solicitação"
           className={`${inputClass} resize-none`}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { InstitutionalPageHeader } from '../_components/page-header'
 
 export const metadata: Metadata = {
   title: 'Sobre o Cartório',
@@ -9,12 +10,7 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <article>
-      <span className="text-sm font-semibold uppercase tracking-wide text-accent">
-        Institucional
-      </span>
-      <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-        Sobre o Cartório
-      </h1>
+      <InstitutionalPageHeader title="Sobre o Cartório" />
       <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted-foreground">
         <p>
           O Cartório de Registro de Imóveis de Bom Conselho — PE (CNS 074864) é uma

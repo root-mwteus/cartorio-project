@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/site-config'
+import { InstitutionalPageHeader } from '../_components/page-header'
 
 export const metadata: Metadata = {
   title: 'Ouvidoria',
@@ -11,12 +12,7 @@ export const metadata: Metadata = {
 export default function OuvidoriaPage() {
   return (
     <article>
-      <span className="text-sm font-semibold uppercase tracking-wide text-accent">
-        Institucional
-      </span>
-      <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-        Ouvidoria
-      </h1>
+      <InstitutionalPageHeader title="Ouvidoria" />
       <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted-foreground">
         <p>
           A ouvidoria é o canal destinado a receber reclamações, sugestões, elogios

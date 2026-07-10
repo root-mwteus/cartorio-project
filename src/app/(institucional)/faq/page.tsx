@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ChevronDown } from 'lucide-react'
+import { InstitutionalPageHeader } from '../_components/page-header'
 
 export const metadata: Metadata = {
   title: 'Perguntas Frequentes',
@@ -43,12 +44,7 @@ const faqs = [
 export default function FaqPage() {
   return (
     <article>
-      <span className="text-sm font-semibold uppercase tracking-wide text-accent">
-        Institucional
-      </span>
-      <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-        Perguntas Frequentes
-      </h1>
+      <InstitutionalPageHeader title="Perguntas Frequentes" />
       <div className="mt-8 space-y-3">
         {faqs.map((faq) => (
           <details
