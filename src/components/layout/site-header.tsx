@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Landmark, Phone, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -45,8 +46,15 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/#inicio" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Landmark className="h-5 w-5" aria-hidden="true" />
+          <span className="flex h-9 w-9 items-center justify-center">
+            <Image
+              src="/logo-icon-v3.png"
+              alt=""
+              width={36}
+              height={36}
+              priority
+              className="h-full w-full object-contain"
+            />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-serif text-sm font-semibold text-foreground">

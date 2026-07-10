@@ -1,5 +1,5 @@
 export const siteConfig = {
-  url: 'https://SEU-DOMINIO.com.br',
+  url: 'https://cartorio-project-topaz.vercel.app',
   name: 'Cartório de Registro de Imóveis de Bom Conselho',
   whatsappUrl: 'https://wa.me/5587981198252',
   whatsappDisplay: '(87) 98119-8252',

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Landmark } from 'lucide-react'
+import Image from 'next/image'
 import { siteConfig } from '@/lib/site-config'
 
 const footerLinks = [
@@ -39,8 +39,8 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary-foreground/10">
-                <Landmark className="h-5 w-5" aria-hidden="true" />
+              <span className="flex h-9 w-9 items-center justify-center">
+                <Image src="/logo-icon-v3.png" alt="" width={36} height={36} className="h-full w-full object-contain" />
               </span>
               <span className="font-serif text-base font-semibold">
                 Cartório de Registro de Imóveis
