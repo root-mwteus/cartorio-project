@@ -46,9 +46,11 @@ export const metadata: Metadata = {
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
     images: ['/cartorio-hero.png'],
   },
+  // TEMPORÁRIO: site ainda não tem autorização do cartório para ficar
+  // indexável publicamente. Reative index/follow depois de confirmado.
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
   },
 }
 
