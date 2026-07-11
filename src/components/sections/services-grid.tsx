@@ -5,8 +5,10 @@ import {
   Search,
   ClipboardList,
   ShieldCheck,
+  ExternalLink,
   type LucideIcon,
 } from 'lucide-react'
+import { siteConfig } from '@/lib/site-config'
 
 type Service = {
   icon: LucideIcon
@@ -65,7 +67,8 @@ export function ServicesGrid() {
         </h2>
         <p className="mt-4 text-pretty text-lg leading-relaxed text-muted-foreground">
           Reunimos os principais serviços da serventia em um só lugar. Conheça o que
-          oferecemos e prepare-se para ser atendido com rapidez.
+          oferecemos e acesse o Portal Integrado do Registro de Imóveis do Brasil (ONR)
+          para solicitar.
         </p>
       </div>
 
@@ -73,8 +76,11 @@ export function ServicesGrid() {
         {services.map((service) => {
           const Icon = service.icon
           return (
-            <article
+            <a
               key={service.title}
+              href={siteConfig.onrUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group rounded-xl border border-border bg-card p-7 shadow-sm transition-shadow hover:shadow-md"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -86,7 +92,11 @@ export function ServicesGrid() {
               <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
                 {service.description}
               </p>
-            </article>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                Acessar no portal ONR
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              </span>
+            </a>
           )
         })}
       </div>
