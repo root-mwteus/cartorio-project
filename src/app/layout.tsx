@@ -63,7 +63,10 @@ export const viewport: Viewport = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'GovernmentOffice',
+  // LegalService, não GovernmentOffice: cartórios são serventias privadas
+  // que exercem serviço público por delegação (art. 236 da CF), não são
+  // órgãos do governo.
+  '@type': 'LegalService',
   name: siteConfig.name,
   image: `${siteConfig.url}/cartorio-hero.png`,
   url: siteConfig.url,
