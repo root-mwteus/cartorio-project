@@ -88,7 +88,7 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-primary-foreground/15 pt-8 text-sm text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Cartório de Registro de Imóveis de Bom Conselho.</p>
-          <p>CNPJ: 12.345.678/0001-90 · Todos os direitos reservados.</p>
+          <p>CNPJ: 32.146.479/0001-65 · Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
