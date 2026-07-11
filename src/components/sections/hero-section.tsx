@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <section id="inicio" className="relative isolate overflow-hidden">
       <Image
-        src="/cartorio-hero.png"
+        src="/cartorio-hero.jpg"
         alt="Interior do cartório de registro de imóveis"
         fill
         priority
