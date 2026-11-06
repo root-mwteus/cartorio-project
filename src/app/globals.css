@@ -65,7 +65,7 @@
   --muted-foreground: var(--color-ink-muted);
   --accent: var(--color-gold);
   --accent-foreground: var(--color-wine-deep);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.5 0.19 27);
   --border: var(--color-rule);
   --input: var(--color-rule);
   --ring: var(--color-wine);

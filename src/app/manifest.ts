@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
       'Atendimento digital e presencial do Cartório de Registro de Imóveis de Bom Conselho - PE.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#5c1e22',
+    background_color: '#faf6ee',
+    theme_color: '#460913',
     icons: [
       {
         src: '/logo-icon-v3.png',
