@@ -4,6 +4,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Paleta editorial (docs/DESIGN_TARGET.md §2). gold só para ornamento; texto dourado usa gold-text (AA). */
+@theme {
+  --color-paper: oklch(0.975 0.012 85);
+  --color-linen: oklch(0.945 0.018 80);
+  --color-rule: oklch(0.86 0.025 80);
+  --color-ink-muted: oklch(0.47 0.025 40);
+  --color-wine-deep: oklch(0.26 0.09 18);
+  --color-gold: oklch(0.74 0.11 82);
+  --color-gold-text: oklch(0.5 0.09 75);
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-lora), Georgia, 'Times New Roman', serif;

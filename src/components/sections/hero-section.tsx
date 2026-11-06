@@ -1,74 +1,116 @@
-import Image from 'next/image'
-import { MessageCircle, MapPin, Clock } from 'lucide-react'
+import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
 
+const shortcuts = [
+  { title: 'Certidão de matrícula', detail: 'Eletrônica, emitida em até 4 horas úteis' },
+  { title: 'Matrícula on-line', detail: 'Imagem idêntica à do cartório, sem sair de casa' },
+  { title: 'E-Protocolo', detail: 'Protocolo eletrônico de títulos para registro' },
+]
+
+const facts = [
+  { label: 'Atendimento', value: 'Seg. a sex., 08h às 17h' },
+  { label: 'Localização', value: `${siteConfig.address.city} — ${siteConfig.address.state}` },
+  { label: 'CNS', value: '074864' },
+]
+
 export function HeroSection() {
   return (
-    <section id="inicio" className="relative isolate overflow-hidden">
-      <Image
-        src="/cartorio-hero.jpg"
-        alt="Interior do cartório de registro de imóveis"
-        fill
-        priority
-        sizes="100vw"
-        className="absolute inset-0 -z-10 object-cover"
-      />
-      <div className="absolute inset-0 -z-10 bg-primary/85" aria-hidden="true" />
+    <section id="inicio" aria-labelledby="hero-title" className="border-b border-rule bg-paper">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-center lg:gap-16 lg:py-24">
+        <div>
+          <p className="inline-flex items-center gap-3 border-y-[3px] border-double border-gold py-1.5 font-serif text-base tracking-[0.06em] text-gold-text [font-variant-caps:all-small-caps]">
+            <span>Serviço Público Delegado</span>
+            <span aria-hidden="true" className="text-gold">
+              •
+            </span>
+            <span>Fé Pública</span>
+          </p>
 
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
-        <div className="max-w-2xl">
-          <span className="inline-flex items-center rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-medium tracking-wide text-primary-foreground">
-            CNS 074864 • SERVIÇO PÚBLICO DELEGADO • FÉ PÚBLICA
-          </span>
-          <h1 className="mt-6 text-balance font-serif text-4xl font-semibold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+          <h1
+            id="hero-title"
+            className="mt-8 max-w-[15ch] text-balance font-serif text-[clamp(2.75rem,7vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-foreground"
+          >
             Registro de Imóveis de Bom Conselho
           </h1>
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/85">
+
+          <p className="mt-6 max-w-[36rem] text-pretty text-lg leading-relaxed text-ink-muted">
             Atendimento digital e presencial com segurança jurídica. Solicite certidões,
             consulte matrículas on-line, envie documentos assinados e protocole títulos
             sem sair de casa ou aqui em nossa serventia.
           </p>
-          <p className="mt-4 text-sm text-primary-foreground/75">
-            Oficial Registrador: Algacyr Fernando Vieira de Barros
+
+          <p className="mt-8 border-l-2 border-gold pl-4">
+            <span className="block text-sm text-ink-muted">Oficial Registrador</span>
+            <span className="mt-0.5 block font-serif text-xl italic text-foreground">
+              Algacyr Fernando Vieira de Barros
+            </span>
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
             <Button
               size="lg"
               nativeButton={false}
-              className="h-12 bg-accent px-6 text-base text-accent-foreground hover:bg-accent/90"
+              className="h-12 rounded-sm px-6 text-base"
               render={
-                <a
-                  href={siteConfig.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   Falar no WhatsApp
                 </a>
               }
             />
-            <Button
-              size="lg"
-              variant="outline"
-              nativeButton={false}
-              className="h-12 border-primary-foreground/30 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-              render={<a href="#servicos">Ver serviços</a>}
-            />
+            <a
+              href="#servicos"
+              className="self-start py-2 text-base font-medium text-primary underline decoration-gold underline-offset-[6px] transition-colors hover:decoration-primary sm:self-auto"
+            >
+              Ver a carta de serviços
+            </a>
           </div>
 
-          <dl className="mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm text-primary-foreground/85">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-              <dd>Bom Conselho — PE</dd>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" aria-hidden="true" />
-              <dd>Seg a Sex, 08h às 17h</dd>
-            </div>
+          <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-rule pt-6 text-sm sm:grid-cols-3">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-ink-muted">{fact.label}</dt>
+                <dd className="mt-1 font-medium tabular-nums text-foreground">{fact.value}</dd>
+              </div>
+            ))}
           </dl>
         </div>
+
+        <nav aria-labelledby="triagem-title" className="border-t-2 border-gold bg-wine-deep text-paper">
+          <div className="px-6 pb-5 pt-6 sm:px-8 sm:pt-8">
+            <h2 id="triagem-title" className="font-serif text-2xl font-semibold">
+              O que você precisa?
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-paper/75">
+              Atalhos para os pedidos feitos no Portal Integrado do Registro de Imóveis (ONR).
+            </p>
+          </div>
+          <ul className="border-t border-paper/15">
+            {shortcuts.map((shortcut) => (
+              <li key={shortcut.title} className="border-b border-paper/15 last:border-b-0">
+                <a
+                  href={siteConfig.onrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start justify-between gap-4 px-6 py-5 transition-colors hover:bg-paper/[0.06] focus-visible:bg-paper/[0.06] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-gold sm:px-8"
+                >
+                  <span>
+                    <span className="block font-serif text-lg font-semibold decoration-gold underline-offset-4 group-hover:underline">
+                      {shortcut.title}
+                    </span>
+                    <span className="mt-1 block text-sm text-paper/75">{shortcut.detail}</span>
+                  </span>
+                  <ArrowUpRight
+                    className="mt-1 h-5 w-5 shrink-0 text-gold transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">(abre o portal ONR em nova aba)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   )
