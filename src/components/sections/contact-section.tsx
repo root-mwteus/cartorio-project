@@ -43,7 +43,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
   if (state.status === 'success') {
     return (
       <div className="flex h-full flex-col items-center justify-center py-10 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/15 text-accent">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/15 text-gold-text">
           <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
         </span>
         <h3 className="mt-5 font-serif text-2xl font-semibold text-card-foreground">
@@ -157,7 +157,7 @@ export function ContactSection() {
   return (
     <section id="contato" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
       <div className="max-w-2xl">
-        <span className="text-sm font-semibold uppercase tracking-wide text-accent">
+        <span className="text-sm font-semibold uppercase tracking-wide text-gold-text">
           Contato e localização
         </span>
         <h2 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
