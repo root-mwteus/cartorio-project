@@ -22,7 +22,7 @@ const headingClass = 'font-serif text-lg font-medium text-paper'
 export function SiteFooter() {
   return (
     <footer className="bg-wine-deep text-paper">
-      <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+      <div className="mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 lg:px-8 lg:pt-20">
         <p className="font-serif text-[clamp(2.75rem,8vw,7.25rem)] font-normal italic leading-none tracking-[-0.025em]">
           {siteConfig.tradeName}
         </p>
