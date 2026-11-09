@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { label: "Início", href: "/#inicio" },
@@ -61,7 +62,7 @@ export function SiteHeader() {
               Registro de Imóveis de Bom Conselho
             </span>
             <span className="text-xs text-muted-foreground">
-              CNS 074864 — Bom Conselho/PE
+              CNS {siteConfig.cns} — {siteConfig.address.city}/{siteConfig.address.state}
             </span>
           </span>
         </Link>

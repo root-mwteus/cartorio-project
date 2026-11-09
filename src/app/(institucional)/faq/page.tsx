@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ChevronDown } from 'lucide-react'
+import { siteConfig } from '@/lib/site-config'
 import { InstitutionalPageHeader } from '../_components/page-header'
 
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ const faqs = [
   {
     question: 'O cartório atende aos sábados?',
     answer:
-      'Não. O atendimento presencial e digital ocorre de segunda a sexta-feira, das 08h às 17h, exceto feriados.',
+      `Não. O atendimento presencial e digital ocorre ${siteConfig.hours.sentence}.`,
   },
 ]
 

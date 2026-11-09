@@ -10,9 +10,9 @@ const shortcuts = [
 ]
 
 const facts = [
-  { label: 'Atendimento', value: 'Seg. a sex., 08h às 17h' },
+  { label: 'Atendimento', value: siteConfig.hours.short },
   { label: 'Localização', value: `${siteConfig.address.city} — ${siteConfig.address.state}` },
-  { label: 'CNS', value: '074864' },
+  { label: 'CNS', value: siteConfig.cns },
 ]
 
 export function HeroSection() {
@@ -42,9 +42,9 @@ export function HeroSection() {
           </p>
 
           <p className="mt-8 border-l-2 border-gold pl-4">
-            <span className="block text-sm text-ink-muted">Oficial Registrador</span>
+            <span className="block text-sm text-ink-muted">{siteConfig.officer.title}</span>
             <span className="mt-0.5 block font-serif text-xl italic text-foreground">
-              Algacyr Fernando Vieira de Barros
+              {siteConfig.officer.name}
             </span>
           </p>
 

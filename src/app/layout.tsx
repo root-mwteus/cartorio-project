@@ -82,9 +82,9 @@ const jsonLd = {
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
-    closes: '17:00',
+    dayOfWeek: siteConfig.hours.dayOfWeek,
+    opens: siteConfig.hours.opens,
+    closes: siteConfig.hours.closes,
   },
 }
 

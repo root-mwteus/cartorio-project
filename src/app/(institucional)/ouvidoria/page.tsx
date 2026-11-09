@@ -21,8 +21,8 @@ export default function OuvidoriaPage() {
           notariais e de registro.
         </p>
         <p>
-          Sua manifestação é tratada com sigilo e encaminhada diretamente ao
-          Oficial Registrador para análise e resposta.
+          Sua manifestação é tratada com sigilo e encaminhada diretamente{' '}
+          {siteConfig.officer.toTitle} para análise e resposta.
         </p>
       </div>
       <div className="mt-8 rounded-xl border border-border bg-card p-6 shadow-sm">
