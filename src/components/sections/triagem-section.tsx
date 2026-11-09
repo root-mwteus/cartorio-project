@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { deadlineText, legalDeadlines } from '@/lib/legal-deadlines'
 import { siteConfig } from '@/lib/site-config'
 
 type Need = {
@@ -24,8 +25,8 @@ const needs: Need[] = [
     act: 'Certidão de Matrícula',
     description:
       'Certidão com validade jurídica, que comprova a situação atualizada e a titularidade do imóvel. Tenha em mãos o número da matrícula.',
-    deadline: 'Até 4 horas úteis',
-    basis: 'Lei nº 6.015/1973, art. 19, § 10, I',
+    deadline: deadlineText(legalDeadlines.certidaoMatricula),
+    basis: legalDeadlines.certidaoMatricula.basis,
     actionLabel: 'Solicitar no Portal ONR',
     actionUrl: siteConfig.onrUrl,
   },
@@ -34,8 +35,8 @@ const needs: Need[] = [
     need: 'Saber a situação jurídica atual',
     act: 'Certidão de Situação Jurídica',
     description: 'Certidão da situação jurídica atualizada do imóvel.',
-    deadline: '1 dia útil',
-    basis: 'Lei nº 6.015/1973, art. 19, § 10, II',
+    deadline: deadlineText(legalDeadlines.situacaoJuridica),
+    basis: legalDeadlines.situacaoJuridica.basis,
     actionLabel: 'Solicitar no Portal ONR',
     actionUrl: siteConfig.onrUrl,
   },
@@ -63,8 +64,8 @@ const needs: Need[] = [
     act: 'Registro e E-Protocolo',
     description:
       'Protocolo eletrônico do título. São 5 dias para títulos simples e sem exigências, e 10 dias nos demais casos.',
-    deadline: '5 a 10 dias úteis',
-    basis: 'Lei nº 6.015/1973, art. 188',
+    deadline: deadlineText(legalDeadlines.registroTitulos),
+    basis: legalDeadlines.registroTitulos.basis,
     actionLabel: 'Protocolar no Portal ONR',
     actionUrl: siteConfig.onrUrl,
   },
@@ -73,7 +74,7 @@ const needs: Need[] = [
     need: 'Assinar um documento digitalmente',
     act: 'Portal de Assinaturas e Digitalizações',
     description:
-      'Ferramenta gratuita do Registro de Imóveis do Brasil para assinar documentos com certificado ICP-Brasil.',
+      'Ferramenta gratuita do Registro de Imóveis do Brasil para assinar documentos digitalmente.',
     deadline: 'Sob consulta',
     actionLabel: 'Acessar o Portal de Assinaturas',
     actionUrl: siteConfig.signaturePortalUrl,

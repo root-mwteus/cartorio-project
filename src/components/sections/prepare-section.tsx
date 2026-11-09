@@ -1,10 +1,7 @@
-type Deadline = {
+import { deadlineText, legalDeadlines, type LegalDeadline } from '@/lib/legal-deadlines'
+
+type Deadline = LegalDeadline & {
   act: string
-  prefix?: string
-  from: string
-  to?: string
-  unit: string
-  basis: string
   note: string
 }
 
@@ -12,32 +9,22 @@ type Deadline = {
 const deadlines: Deadline[] = [
   {
     act: 'Certidões eletrônicas',
-    prefix: 'Até',
-    from: '4',
-    unit: 'horas úteis',
-    basis: 'Lei nº 6.015/1973, art. 19, § 10, I',
+    ...legalDeadlines.certidaoMatricula,
     note: 'Certidão de inteiro teor da matrícula, pedida no horário de expediente com o número da matrícula.',
   },
   {
     act: 'Situação jurídica do imóvel',
-    from: '1',
-    unit: 'dia útil',
-    basis: 'Lei nº 6.015/1973, art. 19, § 10, II',
+    ...legalDeadlines.situacaoJuridica,
     note: 'Certidão da situação jurídica atualizada do imóvel.',
   },
   {
     act: 'Análise e registro de títulos',
-    from: '5',
-    to: '10',
-    unit: 'dias úteis',
-    basis: 'Lei nº 6.015/1973, art. 188',
+    ...legalDeadlines.registroTitulos,
     note: '5 dias para títulos simples e sem exigências, como a compra e venda sem cláusulas especiais; 10 dias nos demais casos.',
   },
   {
     act: 'Vigência da prenotação',
-    from: '20',
-    unit: 'dias',
-    basis: 'Lei nº 6.015/1973, art. 205',
+    ...legalDeadlines.prenotacao,
     note: 'Prazo máximo. Os efeitos da prenotação cessam se as exigências não forem atendidas.',
   },
 ]
@@ -46,8 +33,8 @@ const deadlines: Deadline[] = [
 const titlePath = [
   { step: 'Assinatura', when: 'Antes do envio', detail: 'Documento assinado com certificado ICP-Brasil.' },
   { step: 'Protocolo', when: 'Início da prenotação', detail: 'Envio do título pelo E-Protocolo no Portal ONR.' },
-  { step: 'Análise', when: '5 a 10 dias úteis', detail: '5 dias para títulos simples e sem exigências; 10 nos demais casos.' },
-  { step: 'Exigências', when: 'Dentro de 20 dias', detail: 'Se não forem atendidas, os efeitos da prenotação cessam.' },
+  { step: 'Análise', when: deadlineText(legalDeadlines.registroTitulos), detail: '5 dias para títulos simples e sem exigências; 10 nos demais casos.' },
+  { step: 'Exigências', when: `Dentro de ${deadlineText(legalDeadlines.prenotacao)}`, detail: 'Se não forem atendidas, os efeitos da prenotação cessam.' },
   { step: 'Registro', when: 'Conclusão', detail: 'O ato é lançado na matrícula do imóvel.' },
 ]
 
