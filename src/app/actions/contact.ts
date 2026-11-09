@@ -3,7 +3,7 @@
 import { headers } from 'next/headers'
 import { Resend } from 'resend'
 import { createSupabaseServerClient } from '@/lib/supabase'
-import { getContactFormRateLimit } from '@/lib/rate-limit'
+import { checkGlobalRateLimit, checkIpRateLimit } from '@/lib/rate-limit'
 import { siteConfig } from '@/lib/site-config'
 import {
   readContactFormValues,
@@ -44,8 +44,9 @@ export async function submitContactForm(
 
   try {
     const ip = (await headers()).get('x-forwarded-for')?.split(',')[0]?.trim() ?? '127.0.0.1'
-    const { success: withinRateLimit } = await getContactFormRateLimit().limit(ip)
-    if (!withinRateLimit) {
+    const ipLimit = await checkIpRateLimit(ip)
+    if (ipLimit === 'unavailable') return unavailable(values)
+    if (ipLimit === 'limited') {
       return {
         status: 'error',
         values,
@@ -61,6 +62,9 @@ export async function submitContactForm(
       return { status: 'success' }
     }
 
+    // Só depois da validação e do honeypot, para bots não consumirem a cota de todos.
+    if ((await checkGlobalRateLimit()) !== 'allowed') return unavailable(values)
+
     const { name, email, subject, message } = result.data
 
     // Falta de configuração do e-mail interrompe aqui, antes de gravar a mensagem.
@@ -73,7 +77,7 @@ export async function submitContactForm(
       .insert({ name, email, subject, message })
 
     if (dbError) {
-      console.error('Erro ao salvar no Supabase:', dbError)
+      console.error('Erro ao salvar no Supabase:', dbError.code)
       return unavailable(values)
     }
 
@@ -92,7 +96,7 @@ export async function submitContactForm(
 
     // O Resend devolve a recusa no retorno, sem lançar exceção.
     if (emailError) {
-      console.error('Erro ao enviar e-mail:', emailError)
+      console.error('Erro ao enviar e-mail:', emailError.name)
       return unavailable(values)
     }
 

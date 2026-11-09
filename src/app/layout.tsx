@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Lora } from 'next/font/google'
+import { serializeJsonLd } from '@/lib/json-ld'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
@@ -105,7 +106,7 @@ export default function RootLayout({
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </body>
     </html>

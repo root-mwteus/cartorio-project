@@ -9,6 +9,18 @@ function buildFormData(fields: Record<string, string>) {
   return formData
 }
 
+describe('sanitização do assunto', () => {
+  it.each(['\r\n', '\n', '\r', '\u2028', '\u2029'])('remove a quebra %j', (lineBreak) => {
+    const formData = new FormData()
+    formData.set('name', 'Maria')
+    formData.set('email', 'maria@example.com')
+    formData.set('subject', `Certidão${lineBreak}Bcc: alvo@example.com`)
+    formData.set('message', 'Texto')
+    const result = validateContactForm(formData)
+    expect(result).toMatchObject({ data: { subject: 'Certidão Bcc: alvo@example.com' } })
+  })
+})
+
 const validFields = {
   name: 'Maria Silva',
   email: 'maria@example.com',

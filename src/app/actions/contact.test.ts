@@ -1,14 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const mocks = vi.hoisted(() => ({
-  limit: vi.fn(),
-  getLimiter: vi.fn(),
+  ipLimit: vi.fn(),
+  globalLimit: vi.fn(),
   insert: vi.fn(),
   send: vi.fn(),
 }))
 
 vi.mock('next/headers', () => ({ headers: async () => new Headers() }))
-vi.mock('@/lib/rate-limit', () => ({ getContactFormRateLimit: mocks.getLimiter }))
+vi.mock('@/lib/rate-limit', () => ({
+  checkIpRateLimit: mocks.ipLimit,
+  checkGlobalRateLimit: mocks.globalLimit,
+}))
 vi.mock('@/lib/supabase', () => ({
   createSupabaseServerClient: () => ({ from: () => ({ insert: mocks.insert }) }),
 }))
@@ -41,8 +44,8 @@ describe('submitContactForm', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
     vi.stubEnv('RESEND_API_KEY', 're_test')
     vi.stubEnv('CONTACT_NOTIFICATION_EMAIL', 'destino@example.com')
-    mocks.limit.mockResolvedValue({ success: true })
-    mocks.getLimiter.mockReturnValue({ limit: mocks.limit })
+    mocks.ipLimit.mockResolvedValue('allowed')
+    mocks.globalLimit.mockResolvedValue('allowed')
     mocks.insert.mockResolvedValue({ error: null })
     mocks.send.mockResolvedValue({ data: { id: '1' }, error: null })
   })
@@ -54,7 +57,7 @@ describe('submitContactForm', () => {
   })
 
   it('oferece outros canais quando o rate-limit não inicializa', async () => {
-    mocks.getLimiter.mockImplementation(() => {
+    mocks.ipLimit.mockImplementation(() => {
       throw new Error('sem chaves')
     })
     await expect(submit()).resolves.toEqual(unavailable)
@@ -82,10 +85,52 @@ describe('submitContactForm', () => {
   })
 
   it('mantém o texto sem oferecer outros canais quando excede o limite', async () => {
-    mocks.limit.mockResolvedValue({ success: false })
+    mocks.ipLimit.mockResolvedValue('limited')
     const result = await submit()
     expect(result).toMatchObject({ status: 'error', values })
     expect(result.fallback).toBeUndefined()
+  })
+
+  it('bloqueia com fallback quando o rate-limit por IP dá timeout', async () => {
+    mocks.ipLimit.mockResolvedValue('unavailable')
+    await expect(submit()).resolves.toEqual(unavailable)
+    expect(mocks.insert).not.toHaveBeenCalled()
+  })
+
+  it.each(['limited', 'unavailable'])('oferece outros canais com o limite global %s', async (state) => {
+    mocks.globalLimit.mockResolvedValue(state)
+    await expect(submit()).resolves.toEqual(unavailable)
+    expect(mocks.insert).not.toHaveBeenCalled()
+    expect(mocks.send).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    ['honeypot', { website: 'spam' }],
+    ['e-mail inválido', { email: 'invalido' }],
+  ])('%s não consome a cota global', async (_label, extra) => {
+    await submit(extra)
+    expect(mocks.globalLimit).not.toHaveBeenCalled()
+  })
+
+  it('não grava dados pessoais nos logs quando o banco falha', async () => {
+    mocks.insert.mockResolvedValue({
+      error: { code: '23514', details: 'Failing row contains (Maria, maria@example.com)' },
+    })
+    await submit()
+    const logged = JSON.stringify(vi.mocked(console.error).mock.calls)
+    expect(logged).toContain('23514')
+    expect(logged).not.toContain('maria@example.com')
+  })
+
+  it('não grava dados pessoais nos logs quando o Resend falha', async () => {
+    mocks.send.mockResolvedValue({
+      data: null,
+      error: { name: 'validation_error', message: 'destino maria@example.com recusado' },
+    })
+    await submit()
+    const logged = JSON.stringify(vi.mocked(console.error).mock.calls)
+    expect(logged).toContain('validation_error')
+    expect(logged).not.toContain('maria@example.com')
   })
 
   it('mantém o texto em erro de validação', async () => {

@@ -40,7 +40,8 @@ export function validateContactForm(formData: FormData): ValidationResult {
 
   const name = formData.get('name')?.toString().trim()
   const email = formData.get('email')?.toString().trim()
-  const subject = formData.get('subject')?.toString().trim()
+  // Sem quebras de linha: o assunto vira cabeçalho do e-mail de notificação.
+  const subject = formData.get('subject')?.toString().replace(/[\r\n\u2028\u2029]+/g, ' ').trim()
   const message = formData.get('message')?.toString().trim()
 
   if (!name || !email || !subject || !message) {
