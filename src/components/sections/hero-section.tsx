@@ -1,6 +1,7 @@
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
+import { HeroLot } from './hero-lot'
 
 const shortcuts = [
   { title: 'Certidão de matrícula', detail: 'Eletrônica, emitida em até 4 horas úteis' },
@@ -17,9 +18,9 @@ const facts = [
 export function HeroSection() {
   return (
     <section id="inicio" aria-labelledby="hero-title" className="border-b border-rule bg-paper">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-center lg:gap-16 lg:py-24">
-        <div>
-          <p className="inline-flex items-center gap-3 border-y-[3px] border-double border-gold py-1.5 font-serif text-base tracking-[0.06em] text-gold-text [font-variant-caps:all-small-caps]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_30rem] lg:grid-rows-[auto_1fr_auto] lg:gap-x-16 lg:gap-y-0 lg:py-20">
+        <div className="lg:col-start-1 lg:row-span-2 lg:row-start-1">
+          <p className="inline-flex items-center gap-3 border-y-[3px] border-double border-gold py-1.5 font-serif text-base tracking-[0.06em] text-gold-text [font-variant-caps:all-small-caps] motion-safe:animate-rule-draw">
             <span>Serviço Público Delegado</span>
             <span aria-hidden="true" className="text-gold">
               •
@@ -29,7 +30,7 @@ export function HeroSection() {
 
           <h1
             id="hero-title"
-            className="mt-8 max-w-[15ch] text-balance font-serif text-[clamp(2.75rem,7vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-foreground"
+            className="mt-8 max-w-[15ch] text-balance font-serif text-[clamp(2.75rem,7vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-foreground motion-safe:animate-rise"
           >
             Registro de Imóveis de Bom Conselho
           </h1>
@@ -66,18 +67,23 @@ export function HeroSection() {
               Ver a carta de serviços
             </a>
           </div>
-
-          <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-rule pt-6 text-sm sm:grid-cols-3">
-            {facts.map((fact) => (
-              <div key={fact.label}>
-                <dt className="text-ink-muted">{fact.label}</dt>
-                <dd className="mt-1 font-medium tabular-nums text-foreground">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
-        <nav aria-labelledby="triagem-title" className="border-t-2 border-gold bg-wine-deep text-paper">
+        <HeroLot className="lg:col-start-2 lg:row-start-1" />
+
+        <dl className="grid grid-cols-2 gap-x-8 gap-y-4 border-t border-rule pt-6 text-sm sm:grid-cols-3 lg:col-start-1 lg:row-start-3 lg:mt-12 lg:self-end">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt className="text-ink-muted">{fact.label}</dt>
+              <dd className="mt-1 font-medium tabular-nums text-foreground">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav
+          aria-labelledby="triagem-title"
+          className="relative z-10 border-t-2 border-gold bg-wine-deep text-paper lg:col-start-2 lg:row-span-2 lg:row-start-2 lg:mt-8 lg:self-start"
+        >
           <div className="px-6 pb-5 pt-6 sm:px-8 sm:pt-8">
             <h2 id="triagem-title" className="font-serif text-2xl font-semibold">
               O que você precisa?
