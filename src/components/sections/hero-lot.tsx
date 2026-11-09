@@ -50,6 +50,7 @@ export function HeroLot({ className = '' }: { className?: string }) {
         src="/hero-lote.png"
         alt=""
         fill
+        loading="eager"
         sizes="(min-width: 1024px) 30rem, 100vw"
         className={`object-contain transition-opacity duration-700 ${ready ? 'opacity-0' : 'opacity-100'}`}
       />

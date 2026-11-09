@@ -42,20 +42,29 @@ const deadlines: Deadline[] = [
   },
 ]
 
-const number = 'font-serif text-3xl font-semibold tabular-nums text-foreground'
+// Etapas descritas com os prazos do quadro abaixo e o roteiro de /enviar-documentos.
+const titlePath = [
+  { step: 'Assinatura', when: 'Antes do envio', detail: 'Documento assinado com certificado ICP-Brasil.' },
+  { step: 'Protocolo', when: 'Início da prenotação', detail: 'Envio do título pelo E-Protocolo no Portal ONR.' },
+  { step: 'Análise', when: '5 a 10 dias úteis', detail: '5 dias para títulos simples e sem exigências; 10 nos demais casos.' },
+  { step: 'Exigências', when: 'Dentro de 20 dias', detail: 'Se não forem atendidas, os efeitos da prenotação cessam.' },
+  { step: 'Registro', when: 'Conclusão', detail: 'O ato é lançado na matrícula do imóvel.' },
+]
+
+const number = 'font-serif text-4xl font-normal tabular-nums text-foreground'
 const word = 'text-sm text-ink-muted'
 
 export function PrepareSection() {
   return (
     <section id="prazos" aria-labelledby="prazos-title" className="border-y border-rule bg-linen">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-28">
         <h2
           id="prazos-title"
-          className="text-balance font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-[1.1] text-foreground"
+          className="text-balance font-serif text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
         >
-          Quadro Oficial de Prazos Registrais
+          Quadro oficial de prazos registrais
         </h2>
-        <p className="mt-3 max-w-[38rem] text-pretty text-base leading-relaxed text-ink-muted sm:mt-4 sm:text-lg">
+        <p className="mt-4 max-w-[38rem] text-pretty leading-relaxed text-ink-muted sm:text-lg">
           Prazos fixados pela Lei de Registros Públicos para os principais atos desta serventia.
         </p>
 
@@ -117,13 +126,33 @@ export function PrepareSection() {
 
         <p
           id="nota-prazos"
-          className="mt-8 max-w-[72ch] border-l-2 border-gold pl-4 text-sm leading-relaxed text-ink-muted"
+          className="mt-6 max-w-[72ch] text-sm leading-relaxed text-ink-muted"
         >
           <sup className="mr-1 font-serif text-gold-text">1</sup>
           Prazos contados em dias e horas úteis, conforme o art. 9º, § 1º, da Lei Federal
           nº 6.015/1973 (Lei de Registros Públicos), com a redação dada pela Lei nº
           14.382/2022, que instituiu o Sistema Eletrônico dos Registros Públicos (SERP).
         </p>
+
+        <div className="mt-16 lg:mt-24">
+          <h3 className="font-serif text-3xl font-normal text-foreground">O caminho de um título</h3>
+          <div className="relative mt-8">
+            <div aria-hidden="true" className="path-rule absolute inset-x-0 top-0 hidden h-0.5 bg-wine md:block" />
+            <ol className="grid border-l-2 border-wine md:grid-cols-5 md:gap-8 md:border-l-0">
+              {titlePath.map((item) => (
+                <li key={item.step} className="relative py-4 pl-5 md:pl-0 md:pt-6">
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-[5px] top-6 h-2 w-2 bg-wine md:-top-[3px] md:left-0"
+                  />
+                  <h4 className="font-serif text-2xl font-medium text-foreground">{item.step}</h4>
+                  <p className="mt-1 text-sm font-medium tabular-nums text-foreground">{item.when}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.detail}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -7,21 +7,18 @@ export default function NotFound() {
   return (
     <div className="flex min-h-dvh flex-col">
       <SiteHeader />
-      <main id="main" className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-4 py-24 text-center sm:px-6">
-        <span className="text-sm font-semibold uppercase tracking-wide text-gold-text">
-          Erro 404
-        </span>
-        <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-          Página não encontrada
+      <main id="main" className="mx-auto w-full max-w-7xl flex-1 px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+        <p className="font-serif text-2xl italic tabular-nums text-gold-text">Folha 404</p>
+        <h1 className="mt-3 max-w-[16ch] text-balance font-serif text-[clamp(2.5rem,6vw,4.75rem)] font-normal leading-[1.02] tracking-[-0.02em] text-foreground">
+          Esta página não consta em nossos livros
         </h1>
-        <p className="mt-4 max-w-md text-pretty leading-relaxed text-muted-foreground">
-          A página que você tentou acessar não existe ou foi movida. Confira o
-          endereço digitado ou volte para o início.
+        <p className="mt-5 max-w-md text-pretty leading-relaxed text-ink-muted">
+          O endereço pode ter sido digitado errado ou a página foi movida.
         </p>
         <Button
           size="lg"
           nativeButton={false}
-          className="mt-8 h-12 px-6 text-base"
+          className="mt-8"
           render={<Link href="/">Voltar para o início</Link>}
         />
       </main>

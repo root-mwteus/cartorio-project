@@ -48,29 +48,27 @@ const services: Service[] = [
   },
 ]
 
-const columns = 'md:grid-cols-[4rem_minmax(0,1fr)_11rem_9rem]'
+const columns = 'md:grid-cols-[3rem_minmax(0,1fr)_10rem_1.25rem]'
 
 export function ServicesGrid() {
   return (
     <section id="servicos" aria-labelledby="servicos-title" className="bg-paper">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
-          <div>
-            <h2
-              id="servicos-title"
-              className="text-balance font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-[1.1] text-foreground"
-            >
-              Carta de Serviços Registrais
-            </h2>
-            <p className="mt-3 max-w-[38rem] text-pretty text-base leading-relaxed text-ink-muted sm:mt-4 sm:text-lg">
-              Os atos desta serventia são solicitados pelo Portal Integrado do Registro de
-              Imóveis do Brasil (ONR). Confira o prazo médio de cada um antes de fazer o pedido.
-            </p>
-          </div>
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-28">
+        <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+          <h2
+            id="servicos-title"
+            className="text-balance font-serif text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
+          >
+            Carta de serviços registrais
+          </h2>
+          <p className="mt-4 max-w-[30rem] text-pretty leading-relaxed text-ink-muted">
+            Os atos desta serventia são solicitados pelo Portal Integrado do Registro de Imóveis do
+            Brasil (ONR). Confira o prazo médio de cada um antes de fazer o pedido.
+          </p>
           <Button
             size="lg"
             nativeButton={false}
-            className="h-12 justify-self-start rounded-sm px-6 text-base"
+            className="mt-7"
             render={
               <a href={siteConfig.onrUrl} target="_blank" rel="noopener noreferrer">
                 Abrir o Portal ONR
@@ -79,78 +77,73 @@ export function ServicesGrid() {
               </a>
             }
           />
-        </div>
-
-        <div
-          aria-hidden="true"
-          className={`mt-14 hidden gap-6 border-b-2 border-foreground pb-3 text-sm text-ink-muted md:grid ${columns}`}
-        >
-          <span>Nº</span>
-          <span>Ato</span>
-          <span>Prazo médio</span>
-          <span className="text-right">Solicitação</span>
-        </div>
-
-        <ol role="list" className="mt-10 border-t-2 border-foreground md:mt-0 md:border-t-0">
-          {services.map((service, index) => (
-            <li
-              key={service.title}
-              className={`group relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-rule py-5 md:py-6 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-primary md:items-baseline md:gap-6 ${columns}`}
+          <p className="mt-8 max-w-[30rem] text-sm leading-relaxed text-ink-muted">
+            Prazos em horas ou dias úteis. Prazo máximo de prenotação: 20 dias. Para atos sob
+            consulta, confirme o prazo com nossa equipe pelo{' '}
+            <a
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary underline decoration-gold underline-offset-4 hover:decoration-primary"
             >
-              <span aria-hidden="true" className="font-serif text-xl tabular-nums text-gold-text">
-                {String(index + 1).padStart(2, '0')}
-              </span>
+              WhatsApp<span className="sr-only"> (abre em nova aba)</span>
+            </a>
+            .
+          </p>
+        </div>
 
-              <div>
-                <h3 className="font-serif text-xl font-semibold text-foreground">
-                  <a
-                    href={siteConfig.onrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="decoration-gold underline-offset-4 outline-none after:absolute after:inset-0 group-hover:underline"
-                  >
-                    {service.title}
-                    <span className="sr-only">, solicitar no portal ONR (abre em nova aba)</span>
-                  </a>
-                </h3>
-                <p className="mt-1.5 line-clamp-2 max-w-[52ch] text-pretty text-sm leading-relaxed text-ink-muted md:mt-2 md:line-clamp-none md:text-base">
-                  {service.description}
-                </p>
-              </div>
-
-              <div className="col-start-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 md:contents">
-                <p className="text-sm text-ink-muted">
-                  <span className="md:sr-only">Prazo médio: </span>
-                  <span className="font-serif text-lg font-semibold text-foreground">
-                    {service.deadline}
-                  </span>
-                </p>
-
-                <span
-                  aria-hidden="true"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary md:justify-self-end"
-                >
-                  <span className="hidden md:inline">Solicitar no ONR</span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
-                </span>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        <p className="mt-6 max-w-[60ch] text-sm leading-relaxed text-ink-muted">
-          Prazos em horas ou dias úteis. Prazo máximo de prenotação: 20 dias. Para atos sob
-          consulta, confirme o prazo com nossa equipe pelo{' '}
-          <a
-            href={siteConfig.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-primary underline decoration-gold underline-offset-4 hover:decoration-primary"
+        <div className="lg:col-span-8">
+          <div
+            aria-hidden="true"
+            className={`hidden gap-6 pb-3 text-sm text-ink-muted md:grid ${columns}`}
           >
-            WhatsApp
-          </a>
-          .
-        </p>
+            <span>Nº</span>
+            <span>Ato</span>
+            <span>Prazo médio</span>
+          </div>
+
+          <ol role="list" className="border-t-2 border-foreground">
+            {services.map((service, index) => (
+              <li
+                key={service.title}
+                className={`index-row group relative grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-3 gap-y-2 border-b border-rule py-6 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-primary md:items-baseline md:gap-6 ${columns}`}
+              >
+                <span aria-hidden="true" className="font-serif text-xl tabular-nums text-gold-text">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <div className="pr-7 md:pr-0">
+                  <h3
+                    className={`font-serif font-medium leading-tight text-foreground ${index === 0 ? 'text-3xl sm:text-4xl' : 'text-2xl'}`}
+                  >
+                    <a
+                      href={siteConfig.onrUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="outline-none after:absolute after:inset-0"
+                    >
+                      {service.title}
+                      <span className="sr-only">, solicitar no portal ONR (abre em nova aba)</span>
+                    </a>
+                  </h3>
+                  <p className="mt-2 max-w-[52ch] text-pretty text-sm leading-relaxed text-ink-muted md:text-base">
+                    {service.description}
+                  </p>
+                </div>
+
+                <p className="col-start-2 text-sm text-ink-muted md:col-start-auto">
+                  <span className="md:sr-only">Prazo médio: </span>
+                  <span className="font-serif text-lg text-foreground">{service.deadline}</span>
+                </p>
+
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="absolute right-0 top-7 h-5 w-5 text-primary transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5 md:static"
+                />
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   )

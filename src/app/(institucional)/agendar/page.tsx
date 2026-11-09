@@ -30,7 +30,7 @@ export default function AgendarPage() {
         <Button
           size="lg"
           nativeButton={false}
-          className="h-12 bg-accent px-6 text-base text-accent-foreground hover:bg-accent/90"
+          className="h-12 px-6 text-base"
           render={
             <a
               href={siteConfig.whatsappUrl}

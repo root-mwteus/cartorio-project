@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ChevronDown } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { InstitutionalPageHeader } from '../_components/page-header'
 
@@ -62,20 +62,17 @@ export default function FaqPage() {
   return (
     <article>
       <InstitutionalPageHeader title="Perguntas Frequentes" />
-      <div className="mt-8 space-y-3">
+      <div className="mt-10 border-t-2 border-foreground">
         {faqs.map((faq) => (
-          <details
-            key={faq.question}
-            className="group rounded-xl border border-border bg-card p-5 shadow-sm"
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-card-foreground marker:content-none">
+          <details key={faq.question} className="group border-b border-rule">
+            <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-serif text-xl text-foreground transition-colors marker:content-none hover:text-primary group-open:italic sm:text-2xl [&::-webkit-details-marker]:hidden">
               {faq.question}
-              <ChevronDown
-                className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
+              <Plus
+                className="h-5 w-5 shrink-0 text-primary transition-transform duration-200 group-open:rotate-45"
                 aria-hidden="true"
               />
             </summary>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+            <p className="max-w-[62ch] pb-6 text-pretty leading-relaxed text-ink-muted">
               {faq.answer}
             </p>
           </details>

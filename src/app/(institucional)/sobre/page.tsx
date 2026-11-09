@@ -12,7 +12,7 @@ export default function SobrePage() {
   return (
     <article>
       <InstitutionalPageHeader title="Sobre o Cartório" />
-      <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted-foreground">
+      <div className="mt-10 max-w-[68ch] space-y-5 text-pretty leading-relaxed text-ink-muted [&>p:first-child]:font-serif [&>p:first-child]:text-2xl [&>p:first-child]:leading-snug [&>p:first-child]:text-foreground">
         <p>
           A {siteConfig.name}, também conhecida como {siteConfig.tradeName} (CNS {siteConfig.cns}), é uma
           serventia extrajudicial dotada de fé pública, exercida em caráter privado
