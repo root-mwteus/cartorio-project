@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
@@ -110,11 +110,10 @@ export function SiteHeader() {
             nativeButton={false}
             className="h-11 w-11 rounded-sm px-0 sm:h-10 sm:w-auto sm:gap-2 sm:px-4 sm:text-sm"
             render={
-              <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only sm:not-sr-only">WhatsApp</span>
-                <span className="sr-only">(abre em nova aba)</span>
-              </a>
+              <Link href="/#contato">
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only">Contato</span>
+              </Link>
             }
           />
 

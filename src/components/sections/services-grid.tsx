@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { deadlineText, legalDeadlines } from '@/lib/legal-deadlines'
 import { siteConfig } from '@/lib/site-config'
 
 type Service = {
@@ -14,7 +15,7 @@ const services: Service[] = [
     title: 'Certidão de Matrícula',
     description:
       'Emissão de certidões com validade jurídica, comprovando a situação atualizada e a titularidade do imóvel.',
-    deadline: 'Até 4 horas úteis',
+    deadline: deadlineText(legalDeadlines.certidaoMatricula),
   },
   {
     title: 'Matrícula On-line',
@@ -25,7 +26,7 @@ const services: Service[] = [
   {
     title: 'Portal de Assinaturas e Digitalizações',
     description:
-      'Envio seguro de documentos assinados digitalmente, garantindo agilidade e integridade em todo o processo.',
+      'Ferramenta gratuita do Registro de Imóveis do Brasil para assinar documentos digitalmente.',
     deadline: 'Sob consulta',
   },
   {
@@ -38,13 +39,13 @@ const services: Service[] = [
     title: 'E-Protocolo',
     description:
       'Protocolo eletrônico de títulos no Registro de Imóveis, com acompanhamento do andamento à distância.',
-    deadline: '5 a 10 dias úteis',
+    deadline: deadlineText(legalDeadlines.registroTitulos),
   },
   {
     title: 'Registro e Averbação',
     description:
       'Registro de compras, vendas e garantias, além de averbações de construções, quitações e alterações no imóvel.',
-    deadline: '5 a 10 dias úteis',
+    deadline: deadlineText(legalDeadlines.registroTitulos),
   },
 ]
 
@@ -78,7 +79,7 @@ export function ServicesGrid() {
             }
           />
           <p className="mt-8 max-w-[30rem] text-sm leading-relaxed text-ink-muted">
-            Prazos em horas ou dias úteis. Prazo máximo de prenotação: 20 dias. Para atos sob
+            Prazos em horas ou dias úteis. Prazo máximo de prenotação: {deadlineText(legalDeadlines.prenotacao)}. Para atos sob
             consulta, confirme o prazo com nossa equipe pelo{' '}
             <a
               href={siteConfig.whatsappUrl}
