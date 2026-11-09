@@ -14,9 +14,9 @@ const GOLD = '#cda454'
 const WINE_DEEP = '#460913'
 
 export default async function Image() {
-  const [regular, semibold, logo] = await Promise.all([
-    readFile(join(process.cwd(), 'src/app/_og/lora-400.ttf')),
-    readFile(join(process.cwd(), 'src/app/_og/lora-600.ttf')),
+  const [regular, italic, logo] = await Promise.all([
+    readFile(join(process.cwd(), 'src/app/_og/newsreader-400.ttf')),
+    readFile(join(process.cwd(), 'src/app/_og/newsreader-400-italic.ttf')),
     readFile(join(process.cwd(), 'public/logo-icon-v3.png')),
   ])
 
@@ -31,7 +31,7 @@ export default async function Image() {
           padding: '64px 72px',
           background: WINE_DEEP,
           color: PAPER,
-          fontFamily: 'Lora',
+          fontFamily: 'Newsreader',
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 680 }}>
@@ -55,8 +55,8 @@ export default async function Image() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              fontSize: 72,
-              fontWeight: 600,
+              fontSize: 80,
+              fontWeight: 400,
               lineHeight: 1.06,
               letterSpacing: -1,
             }}
@@ -75,7 +75,8 @@ export default async function Image() {
               height={56}
               style={{ marginRight: 20 }}
             />
-            {siteConfig.tradeName} · CNS {siteConfig.cns}
+            <span style={{ fontStyle: 'italic' }}>{siteConfig.tradeName}</span>
+            <span style={{ marginLeft: 8 }}>· CNS {siteConfig.cns}</span>
           </div>
         </div>
 
@@ -102,8 +103,8 @@ export default async function Image() {
     {
       ...size,
       fonts: [
-        { name: 'Lora', data: regular, weight: 400, style: 'normal' },
-        { name: 'Lora', data: semibold, weight: 600, style: 'normal' },
+        { name: 'Newsreader', data: regular, weight: 400, style: 'normal' },
+        { name: 'Newsreader', data: italic, weight: 400, style: 'italic' },
       ],
     },
   )
