@@ -2,29 +2,41 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { MessageCircle, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
-  { label: "Início", href: "/#inicio" },
   { label: "Serviços", href: "/#servicos" },
   { label: "Prazos", href: "/#prazos" },
   { label: "Contato", href: "/#contato" },
+  { label: "Emolumentos", href: "/emolumentos" },
+  { label: "Dúvidas", href: "/faq" },
+  { label: "Sobre", href: "/sobre" },
+];
+
+const mobileOnlyLinks = [
+  { label: "Início", href: "/#inicio" },
+  { label: "Agendar visita", href: "/agendar" },
+  { label: "Enviar documentos", href: "/enviar-documentos" },
+  { label: "Ouvidoria", href: "/ouvidoria" },
+  { label: "Aviso de Privacidade", href: "/privacidade" },
 ];
 
 function sectionIdFromHref(href: string) {
-  return href.replace("/#", "");
+  return href.startsWith("/#") ? href.replace("/#", "") : null;
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.getElementById(sectionIdFromHref(link.href)))
+    const sections = ["inicio", "triagem", "servicos", "prazos", "contato"]
+      .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null);
 
     if (sections.length === 0) return;
@@ -43,10 +55,15 @@ export function SiteHeader() {
     return () => observer.disconnect();
   }, []);
 
+  const isActive = (href: string) => {
+    const section = sectionIdFromHref(href);
+    return section ? pathname === "/" && activeSection === section : pathname === href;
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <Link href="/#inicio" className="flex min-w-0 items-center gap-2.5">
+    <header className="sticky top-0 z-50 border-b border-rule bg-paper">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+        <Link href="/#inicio" className="flex min-h-11 min-w-0 items-center gap-2.5">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center">
             <Image
               src="/logo-icon-v3.png"
@@ -58,30 +75,27 @@ export function SiteHeader() {
             />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="font-serif text-sm font-semibold text-foreground">
-              <span className="lg:hidden">{siteConfig.tradeName}</span>
-              <span className="hidden lg:inline">{siteConfig.name}</span>
+            <span className="font-serif text-base font-medium text-foreground">
+              {siteConfig.tradeName}
             </span>
-            <span className="text-xs text-muted-foreground">
-              <span className="hidden lg:inline">{siteConfig.tradeName} · </span>CNS {siteConfig.cns} — {siteConfig.address.city}/{siteConfig.address.state}
+            <span className="text-xs tabular-nums text-muted-foreground">
+              CNS {siteConfig.cns}
+              <span className="hidden sm:inline">, {siteConfig.address.city}/{siteConfig.address.state}</span>
             </span>
           </span>
         </Link>
 
-        <nav
-          className="hidden items-center gap-6 md:flex"
-          aria-label="Navegação principal"
-        >
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
           {navLinks.map((link) => {
-            const isActive = activeSection === sectionIdFromHref(link.href);
+            const active = isActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-foreground",
-                  isActive ? "font-semibold text-foreground" : "text-muted-foreground",
+                  "relative py-2 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-wine after:transition-transform after:duration-200 hover:text-foreground",
+                  active ? "text-foreground after:scale-x-100" : "text-muted-foreground after:scale-x-0 hover:after:scale-x-100",
                 )}
               >
                 {link.label}
@@ -94,18 +108,19 @@ export function SiteHeader() {
           <Button
             size="sm"
             nativeButton={false}
-            className="h-11 w-11 rounded-sm px-0 sm:h-9 sm:w-auto sm:px-4"
+            className="h-11 w-11 rounded-sm px-0 sm:h-10 sm:w-auto sm:gap-2 sm:px-4 sm:text-sm"
             render={
-              <Link href="/#contato">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only sm:not-sr-only">Fale conosco</span>
-              </Link>
+              <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only">WhatsApp</span>
+                <span className="sr-only">(abre em nova aba)</span>
+              </a>
             }
           />
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:text-foreground lg:hidden"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
@@ -124,19 +139,19 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           aria-label="Navegação principal mobile"
-          className="border-t border-rule bg-paper px-4 py-3 md:hidden"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-paper px-4 py-3 sm:px-6 lg:hidden"
         >
           <ul className="flex flex-col">
-            {navLinks.map((link) => {
-              const isActive = activeSection === sectionIdFromHref(link.href);
+            {[...mobileOnlyLinks.slice(0, 1), ...navLinks, ...mobileOnlyLinks.slice(1)].map((link) => {
+              const active = isActive(link.href);
               return (
-                <li key={link.href}>
+                <li key={link.href} className="border-b border-rule last:border-b-0">
                   <Link
                     href={link.href}
-                    aria-current={isActive ? "page" : undefined}
+                    aria-current={active ? "page" : undefined}
                     className={cn(
-                      "block py-3 text-sm font-medium hover:text-foreground",
-                      isActive ? "font-semibold text-foreground" : "text-muted-foreground",
+                      "block py-3.5 font-serif text-xl hover:text-foreground",
+                      active ? "italic text-foreground" : "text-ink-muted",
                     )}
                     onClick={() => setIsMenuOpen(false)}
                   >

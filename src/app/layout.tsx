@@ -1,19 +1,22 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Lora } from 'next/font/google'
+import { Newsreader, Public_Sans } from 'next/font/google'
 import { WhatsAppFloating } from '@/components/ui/whatsapp-floating'
 import { serializeJsonLd } from '@/lib/json-ld'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
-const geistSans = Geist({
+const body = Public_Sans({
   subsets: ['latin'],
-  variable: '--font-geist-sans',
+  variable: '--font-body',
 })
 
-const lora = Lora({
+// opsz: o desenho muda com o tamanho, fino nos títulos e robusto no texto pequeno.
+const display = Newsreader({
   subsets: ['latin'],
-  variable: '--font-lora',
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  variable: '--font-display',
 })
 
 const pageTitle = `${siteConfig.name} | ${siteConfig.tradeName}`
@@ -94,7 +97,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${lora.variable} light scroll-smooth bg-background`}
+      className={`${body.variable} ${display.variable} light scroll-smooth bg-background`}
     >
       <body className="font-sans antialiased">
         <a

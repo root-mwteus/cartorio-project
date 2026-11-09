@@ -31,6 +31,8 @@
 
 ### Tipografia
 
+> **Atualização (09/11/2026):** Newsreader substitui Lora e Public Sans substitui Geist, para afastar o site da combinação mais comum em interfaces geradas. Onde este documento cita Lora ou Geist, leia-se Newsreader e Public Sans. As fontes continuam servidas pelo próprio site.
+
 | Papel | Família | Uso |
 |---|---|---|
 | Títulos e display | **Lora** (`--font-serif`) | `h1`/`h2`/`h3`, numerais de destaque (prazos), epígrafes em *itálico*, assinatura do Oficial Registrador |

@@ -1,7 +1,10 @@
 'use client'
 
 import { useEffect } from 'react'
+import { SiteHeader } from '@/components/layout/site-header'
+import { SiteFooter } from '@/components/layout/site-footer'
 import { Button } from '@/components/ui/button'
+import { siteConfig } from '@/lib/site-config'
 
 export default function Error({
   error,
@@ -15,20 +18,21 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center px-4 text-center">
-      <span className="text-sm font-semibold uppercase tracking-wide text-gold-text">
-        Erro inesperado
-      </span>
-      <h1 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-        Algo deu errado
-      </h1>
-      <p className="mt-4 max-w-md text-pretty leading-relaxed text-muted-foreground">
-        Ocorreu um erro ao carregar esta página. Tente novamente — se o problema
-        persistir, entre em contato conosco.
-      </p>
-      <Button size="lg" className="mt-8 h-12 px-6 text-base" onClick={() => reset()}>
-        Tentar novamente
-      </Button>
+    <div className="flex min-h-dvh flex-col">
+      <SiteHeader />
+      <main id="main" className="mx-auto w-full max-w-7xl flex-1 px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+        <h1 className="max-w-[16ch] text-balance font-serif text-[clamp(2.5rem,6vw,4.75rem)] font-normal leading-[1.02] tracking-[-0.02em] text-foreground">
+          Esta página não carregou
+        </h1>
+        <p className="mt-5 max-w-md text-pretty leading-relaxed text-ink-muted">
+          Tente novamente. Se o problema continuar, fale conosco pelo WhatsApp{' '}
+          <span className="tabular-nums">{siteConfig.whatsappDisplay}</span>.
+        </p>
+        <Button size="lg" className="mt-8" onClick={() => reset()}>
+          Tentar novamente
+        </Button>
+      </main>
+      <SiteFooter />
     </div>
   )
 }
