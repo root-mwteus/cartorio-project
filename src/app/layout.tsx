@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Lora } from 'next/font/google'
+import { WhatsAppFloating } from '@/components/ui/whatsapp-floating'
 import { serializeJsonLd } from '@/lib/json-ld'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
@@ -103,6 +104,7 @@ export default function RootLayout({
           Pular para o conteúdo
         </a>
         {children}
+        <WhatsAppFloating />
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script
           type="application/ld+json"

@@ -41,7 +41,7 @@ export const siteConfig = {
   },
   address,
   hours: {
-    short: 'Seg. a sex., 08h às 17h',
+    short: 'Seg. a sex., das 08h às 17h',
     label: 'Segunda a sexta-feira, das 08h às 17h',
     exceptions: 'Exceto feriados',
     sentence: 'de segunda a sexta-feira, das 08h às 17h, exceto feriados',

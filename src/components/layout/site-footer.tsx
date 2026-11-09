@@ -22,7 +22,7 @@ const headingClass = 'font-serif text-base font-semibold text-paper'
 export function SiteFooter() {
   return (
     <footer className="bg-wine-deep text-paper">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+      <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14">
         <div className="grid divide-y divide-paper/15 lg:grid-cols-[1fr_1.3fr_1fr] lg:gap-12 lg:divide-y-0">
           <div className="pb-6 lg:pb-0">
             <div className="flex items-center gap-2.5">
