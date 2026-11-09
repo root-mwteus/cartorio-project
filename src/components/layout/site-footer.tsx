@@ -27,7 +27,10 @@ export function SiteFooter() {
           <div className="pb-6 lg:pb-0">
             <div className="flex items-center gap-2.5">
               <Image src="/logo-icon-v3.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
-              <span className="font-serif text-base font-semibold">{siteConfig.name}</span>
+              <span className="flex flex-col">
+                <span className="font-serif text-base font-semibold">{siteConfig.name}</span>
+                <span className="font-serif text-sm italic text-paper/75">{siteConfig.tradeName}</span>
+              </span>
             </div>
             <p className="mt-3 max-w-sm text-pretty text-sm leading-relaxed text-paper/75">
               Serventia extrajudicial dotada de fé pública, a serviço da segurança jurídica e
@@ -64,8 +67,8 @@ export function SiteFooter() {
           <div className="pt-6 lg:pt-0">
             <h2 className={headingClass}>Competência territorial</h2>
             <p className="mt-2 text-sm leading-relaxed text-paper/75 lg:mt-3">
-              Registro dos atos relativos aos imóveis situados no município de{' '}
-              {siteConfig.address.city} — {siteConfig.address.state}.
+              {siteConfig.comarca}. Registro dos atos relativos aos imóveis situados no município de{' '}
+              {siteConfig.address.city}.
             </p>
             <h2 className={`mt-5 ${headingClass}`}>Endereço e atendimento</h2>
             <address className="mt-2 text-sm not-italic leading-relaxed text-paper/75">

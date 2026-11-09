@@ -8,7 +8,7 @@ import { Filled } from '../_components/pending'
 export const metadata: Metadata = {
   title: 'Aviso de Privacidade',
   description:
-    'Como o Cartório de Registro de Imóveis de Bom Conselho - PE trata dados pessoais, conforme a LGPD e o Provimento CNJ nº 134/2022.',
+    `Como a ${siteConfig.name} trata dados pessoais, conforme a LGPD e o Provimento CNJ nº 134/2022.`,
 }
 
 const { address, privacy, officer } = siteConfig
@@ -51,7 +51,7 @@ export default function PrivacidadePage() {
       <Section title="Quem é o responsável pelos seus dados">
         <p>
           O controlador é o responsável pela delegação (Provimento nº 134/2022, art. 4º):{' '}
-          {officer.name}, {officer.title} do {siteConfig.name}, CNS {siteConfig.cns}, CNPJ{' '}
+          {officer.name}, {officer.title} da {siteConfig.name} ({siteConfig.tradeName}), CNS {siteConfig.cns}, CNPJ{' '}
           {siteConfig.cnpj}, {address.street}, {address.neighborhood}, {address.city}/
           {address.state}, CEP {address.postalCode}.
         </p>
@@ -75,12 +75,6 @@ export default function PrivacidadePage() {
             <dt className="inline font-medium text-foreground">E-mail: </dt>
             <dd className="inline">
               <Filled value={privacy.encarregado.email} pending="e-mail do Encarregado" />
-            </dd>
-          </div>
-          <div>
-            <dt className="inline font-medium text-foreground">Telefone: </dt>
-            <dd className="inline">
-              <Filled value={privacy.encarregado.phone} pending="telefone do Encarregado" />
             </dd>
           </div>
         </dl>

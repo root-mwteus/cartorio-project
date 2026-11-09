@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/site-config'
 
 const place = `${siteConfig.address.city} — ${siteConfig.address.state}`
 
-export const alt = `Registro de Imóveis de ${siteConfig.address.city}, ${siteConfig.address.state}. CNS ${siteConfig.cns}.`
+export const alt = `${siteConfig.name} (${siteConfig.tradeName}), ${place}. CNS ${siteConfig.cns}.`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -55,15 +55,15 @@ export default async function Image() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              fontSize: 82,
+              fontSize: 72,
               fontWeight: 600,
               lineHeight: 1.06,
               letterSpacing: -1,
             }}
           >
-            <div>Registro de</div>
-            <div>Imóveis de</div>
-            <div>{siteConfig.address.city}</div>
+            {siteConfig.nameLines.map((line) => (
+              <div key={line}>{line}</div>
+            ))}
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', fontSize: 28 }}>
@@ -75,7 +75,7 @@ export default async function Image() {
               height={56}
               style={{ marginRight: 20 }}
             />
-            CNS {siteConfig.cns} · {place}
+            {siteConfig.tradeName} · CNS {siteConfig.cns}
           </div>
         </div>
 

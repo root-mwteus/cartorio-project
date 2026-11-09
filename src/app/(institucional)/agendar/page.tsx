@@ -7,7 +7,7 @@ import { InstitutionalPageHeader } from '../_components/page-header'
 export const metadata: Metadata = {
   title: 'Agendar Visita',
   description:
-    'Agende seu atendimento presencial no Cartório de Registro de Imóveis de Bom Conselho - PE.',
+    `Agende seu atendimento presencial na ${siteConfig.name}, em Bom Conselho - PE.`,
 }
 
 export default function AgendarPage() {

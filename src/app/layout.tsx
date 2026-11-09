@@ -14,26 +14,28 @@ const lora = Lora({
   variable: '--font-lora',
 })
 
+const pageTitle = `${siteConfig.name} | ${siteConfig.tradeName}`
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Registro de Imóveis de Bom Conselho - PE',
-    template: '%s | Cartório de Registro de Imóveis de Bom Conselho',
+    default: pageTitle,
+    template: `%s | ${siteConfig.name}`,
   },
   description:
-    'Atendimento digital e presencial do Cartório de Registro de Imóveis de Bom Conselho - PE. Registro de imóveis, certidões, averbações e mais.',
+    `Atendimento digital e presencial da ${siteConfig.name} (${siteConfig.tradeName}). Registro de imóveis, certidões, averbações e mais.`,
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: '/',
-    siteName: 'Cartório de Registro de Imóveis de Bom Conselho',
-    title: 'Registro de Imóveis de Bom Conselho - PE',
+    siteName: siteConfig.name,
+    title: pageTitle,
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Registro de Imóveis de Bom Conselho - PE',
+    title: pageTitle,
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
     images: ['/opengraph-image'],
@@ -60,6 +62,7 @@ const jsonLd = {
   // órgãos do governo.
   '@type': 'LegalService',
   name: siteConfig.name,
+  alternateName: siteConfig.tradeName,
   image: `${siteConfig.url}/opengraph-image`,
   url: siteConfig.url,
   telephone: siteConfig.phoneDisplay,

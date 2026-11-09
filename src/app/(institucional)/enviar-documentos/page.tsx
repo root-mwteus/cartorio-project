@@ -7,7 +7,7 @@ import { InstitutionalPageHeader } from '../_components/page-header'
 export const metadata: Metadata = {
   title: 'Enviar Documentos',
   description:
-    'Saiba como assinar digitalmente e enviar documentos para o Cartório de Registro de Imóveis de Bom Conselho - PE.',
+    `Saiba como assinar digitalmente e enviar documentos para a ${siteConfig.name}.`,
 }
 
 export default function EnviarDocumentosPage() {

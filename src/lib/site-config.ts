@@ -1,17 +1,32 @@
+const generalEmail = 'cart1bcab@gmail.com'
+
+const address = {
+  street: 'Av. Ten. Raul de Holanda Cavalcante, 108',
+  neighborhood: 'Centro',
+  city: 'Bom Conselho',
+  state: 'PE',
+  postalCode: '55330-000',
+}
+
+const fullAddress = `${address.street}, ${address.neighborhood}, ${address.city}/${address.state}, CEP ${address.postalCode}`
+
 // Fonte única dos dados da serventia. Dados institucionais só mudam aqui.
 export const siteConfig = {
-  url: 'https://cartorio-project-topaz.vercel.app',
-  name: 'Cartório de Registro de Imóveis de Bom Conselho',
-  // Aguardando confirmação da serventia: cns, comarca e officer.
+  // Defina NEXT_PUBLIC_SITE_URL quando o domínio próprio for registrado.
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cartorio-project-topaz.vercel.app',
+  name: 'Serventia Notarial e Registral de Bom Conselho',
+  nameLines: ['Serventia Notarial', 'e Registral de', 'Bom Conselho'],
+  tradeName: 'Cartório Algacyr Barros',
+  // A serventia ainda não confirmou o CNS (fonte externa cita 07.396-5).
   cns: '074864',
   cnpj: '32.146.479/0001-65',
   comarca: 'Comarca de Bom Conselho — PE',
   officer: {
     name: 'Algacyr Fernando Vieira de Barros',
-    title: 'Oficial Registrador',
+    title: 'Oficial Registrador e Tabelião Titular',
     // Formas com artigo, para o texto concordar se o cargo mudar de gênero.
-    ofTitle: 'do Oficial Registrador',
-    toTitle: 'ao Oficial Registrador',
+    ofTitle: 'do Oficial Registrador e Tabelião Titular',
+    toTitle: 'ao Oficial Registrador e Tabelião Titular',
   },
   whatsappUrl: 'https://wa.me/5587981198252',
   onrUrl: 'https://www.registrodeimoveis.org.br/bomconselho',
@@ -22,16 +37,10 @@ export const siteConfig = {
   whatsappDisplay: '(87) 98119-8252',
   phoneDisplay: '(87) 3771-1740',
   email: {
-    general: 'cart1bcab@gmail.com',
-    support: 'suportecartoriobc@gmail.com',
+    general: generalEmail,
+    notes: 'cart2oficionotasbcab@hotmail.com',
   },
-  address: {
-    street: 'Av. Ten. Raul de Holanda Cavalcante, 108',
-    neighborhood: 'Centro',
-    city: 'Bom Conselho',
-    state: 'PE',
-    postalCode: '55330-000',
-  },
+  address,
   hours: {
     short: 'Seg. a sex., 08h às 17h',
     label: 'Segunda a sexta-feira, das 08h às 17h',
@@ -41,9 +50,9 @@ export const siteConfig = {
     opens: '08:00',
     closes: '17:00',
   },
-  // Aguardando a serventia: e-mail próprio da Ouvidoria e prazo de resposta.
+  // Canal provisório indicado pela serventia. Pendente: prazo de resposta.
   ouvidoria: {
-    email: 'suportecartoriobc@gmail.com',
+    email: generalEmail,
     responseTime: null as string | null,
   },
   oversight: {
@@ -55,13 +64,13 @@ export const siteConfig = {
   // Provimento CNJ 134/2022, arts. 17 e 18. Enquanto null, /privacidade mostra
   // o campo como pendente; preencher antes da publicação oficial.
   privacy: {
+    // Provisório até a nomeação do Encarregado (art. 18 pede nome, endereço e contato).
     encarregado: {
-      name: null as string | null,
-      address: null as string | null,
-      email: null as string | null,
-      phone: null as string | null,
+      name: 'Nomeação em andamento; atendimento provisório pelo canal institucional da serventia',
+      address: fullAddress,
+      email: generalEmail,
     },
-    requestChannel: null as string | null,
+    requestChannel: `${generalEmail} ou presencialmente em ${fullAddress}`,
     responseTime: null as string | null,
     retention: null as string | null,
     updatedAt: null as string | null,

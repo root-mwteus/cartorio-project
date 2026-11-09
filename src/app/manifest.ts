@@ -4,9 +4,9 @@ import { siteConfig } from '@/lib/site-config'
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
-    short_name: 'Cartório Bom Conselho',
+    short_name: siteConfig.tradeName,
     description:
-      'Atendimento digital e presencial do Cartório de Registro de Imóveis de Bom Conselho - PE.',
+      `Atendimento digital e presencial da ${siteConfig.name}.`,
     start_url: '/',
     display: 'standalone',
     background_color: '#faf6ee',

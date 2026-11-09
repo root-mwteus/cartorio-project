@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import { Resend } from 'resend'
 import { createSupabaseServerClient } from '@/lib/supabase'
 import { getContactFormRateLimit } from '@/lib/rate-limit'
+import { siteConfig } from '@/lib/site-config'
 import {
   readContactFormValues,
   validateContactForm,
@@ -82,7 +83,7 @@ export async function submitContactForm(
     // é preciso verificar um domínio próprio no painel do Resend e
     // trocar o "from" abaixo por um endereço nesse domínio.
     const { error: emailError } = await resend.emails.send({
-      from: 'Cartório de Bom Conselho <onboarding@resend.dev>',
+      from: `${siteConfig.tradeName} <onboarding@resend.dev>`,
       to: notificationEmail,
       replyTo: email,
       subject: `Novo contato: ${subject}`,

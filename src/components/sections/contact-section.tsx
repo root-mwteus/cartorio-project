@@ -252,8 +252,8 @@ export function ContactSection() {
                   <a href={`mailto:${siteConfig.email.general}`} className={`break-all ${link}`}>
                     {siteConfig.email.general}
                   </a>
-                  <a href={`mailto:${siteConfig.email.support}`} className={`break-all ${link}`}>
-                    {siteConfig.email.support}
+                  <a href={`mailto:${siteConfig.email.notes}`} className={`break-all ${link}`}>
+                    {siteConfig.email.notes}
                   </a>
                 </dd>
               </div>

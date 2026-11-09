@@ -6,7 +6,7 @@ import { Filled } from '../_components/pending'
 export const metadata: Metadata = {
   title: 'Ouvidoria',
   description:
-    'Canal de ouvidoria do Cartório de Registro de Imóveis de Bom Conselho - PE para reclamações, sugestões e elogios.',
+    `Canal de ouvidoria da ${siteConfig.name} para reclamações, sugestões e elogios.`,
 }
 
 const { ouvidoria, oversight } = siteConfig

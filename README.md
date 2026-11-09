@@ -1,8 +1,8 @@
-# Cartório de Registro de Imóveis de Bom Conselho — PE
+# Serventia Notarial e Registral de Bom Conselho — Cartório Algacyr Barros
 
 [![CI](https://github.com/root-mwteus/cartorio-project/actions/workflows/ci.yml/badge.svg)](https://github.com/root-mwteus/cartorio-project/actions/workflows/ci.yml)
 
-Site institucional do Cartório de Registro de Imóveis de Bom Conselho — PE.
+Site institucional da Serventia Notarial e Registral de Bom Conselho — PE.
 
 🔗 Deploy: [cartorio-project-topaz.vercel.app](https://cartorio-project-topaz.vercel.app)
 
