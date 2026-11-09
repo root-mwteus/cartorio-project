@@ -18,7 +18,14 @@ const faqs = [
   {
     question: 'Como consulto a matrícula de um imóvel pela internet?',
     answer:
-      'Pelo nosso serviço de Matrícula On-line você visualiza a imagem da matrícula idêntica à do cartório, sem precisar se deslocar até a serventia. Entre em contato pelo WhatsApp para solicitar o acesso.',
+      (
+      <>
+        Pelo serviço de Matrícula On-line, no <a className="underline hover:text-foreground" href={siteConfig.onrUrl} target="_blank" rel="noopener noreferrer">
+          Portal ONR<span className="sr-only"> (abre em nova aba)</span>
+        </a>, você visualiza a imagem da matrícula
+        idêntica à do cartório, sem precisar se deslocar até a serventia.
+      </>
+    ),
   },
   {
     question: 'Quais documentos preciso para registrar uma escritura?',
@@ -33,7 +40,16 @@ const faqs = [
   {
     question: 'Como solicito uma certidão?',
     answer:
-      'Certidões eletrônicas são emitidas em até 4 horas úteis. Você pode solicitar pelo formulário de contato, WhatsApp ou presencialmente.',
+      (
+      <>
+        Solicite pelo <a className="underline hover:text-foreground" href={siteConfig.onrUrl} target="_blank" rel="noopener noreferrer">
+          Portal ONR<span className="sr-only"> (abre em nova aba)</span>
+        </a>. Certidões eletrônicas são emitidas em até 4 horas úteis. Se
+        tiver dúvida sobre qual certidão pedir, fale com a triagem pelo <a className="underline hover:text-foreground" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          WhatsApp oficial {siteConfig.whatsappDisplay}<span className="sr-only"> (abre em nova aba)</span>
+        </a>.
+      </>
+    ),
   },
   {
     question: 'O cartório atende aos sábados?',

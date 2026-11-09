@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/site-config'
 import { InstitutionalPageHeader } from '../_components/page-header'
+import { Filled } from '../_components/pending'
 
 export const metadata: Metadata = {
   title: 'Aviso de Privacidade',
@@ -11,11 +12,6 @@ export const metadata: Metadata = {
 }
 
 const { address, privacy, officer } = siteConfig
-
-function Filled({ value, pending }: { value: string | null; pending: string }) {
-  if (value) return <>{value}</>
-  return <mark className="bg-accent/30 px-1 text-foreground">[{pending}]</mark>
-}
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (

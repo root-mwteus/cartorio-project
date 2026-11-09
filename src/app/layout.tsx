@@ -30,21 +30,13 @@ export const metadata: Metadata = {
     title: 'Registro de Imóveis de Bom Conselho - PE',
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
-    images: [
-      {
-        url: '/cartorio-hero.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Cartório de Registro de Imóveis de Bom Conselho - PE',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Registro de Imóveis de Bom Conselho - PE',
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
-    images: ['/cartorio-hero.jpg'],
+    images: ['/opengraph-image'],
   },
   // TEMPORÁRIO: site ainda não tem autorização do cartório para ficar
   // indexável publicamente. Reative index/follow depois de confirmado.
@@ -68,7 +60,7 @@ const jsonLd = {
   // órgãos do governo.
   '@type': 'LegalService',
   name: siteConfig.name,
-  image: `${siteConfig.url}/cartorio-hero.jpg`,
+  image: `${siteConfig.url}/opengraph-image`,
   url: siteConfig.url,
   telephone: siteConfig.phoneDisplay,
   email: siteConfig.email.general,

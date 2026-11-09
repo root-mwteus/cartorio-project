@@ -18,6 +18,7 @@ export const siteConfig = {
   // Ato TJPE nº 1556/2025: tabela do exercício de 2026.
   emolumentosTableUrl:
     'https://portal.tjpe.jus.br/documents/d/portal/ato-1556-tab-emolumentos-dj390-2025-pdf',
+  signaturePortalUrl: 'https://www.registrodeimoveis.org.br/servicos-interno/assinaturas-e-digitalizacoes',
   whatsappDisplay: '(87) 98119-8252',
   phoneDisplay: '(87) 3771-1740',
   email: {
@@ -39,6 +40,17 @@ export const siteConfig = {
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     opens: '08:00',
     closes: '17:00',
+  },
+  // Aguardando a serventia: e-mail próprio da Ouvidoria e prazo de resposta.
+  ouvidoria: {
+    email: 'suportecartoriobc@gmail.com',
+    responseTime: null as string | null,
+  },
+  oversight: {
+    provimentoUrl:
+      'https://portal.tjpe.jus.br/c/document_library/get_file?uuid=d40ef27b-907a-c2f0-ccf3-a3e082dcd030&groupId=29010',
+    corregedoriaUrl: 'https://portal.tjpe.jus.br/web/corregedoria/perguntas-frequentes',
+    ouvidoriaUrl: 'https://portal.tjpe.jus.br/web/ouvidoria',
   },
   // Provimento CNJ 134/2022, arts. 17 e 18. Enquanto null, /privacidade mostra
   // o campo como pendente; preencher antes da publicação oficial.
