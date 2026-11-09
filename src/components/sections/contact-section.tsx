@@ -18,7 +18,7 @@ const link =
   'font-medium text-primary underline decoration-rule underline-offset-4 transition-colors hover:decoration-primary'
 
 const inputClass =
-  'w-full border-0 border-b border-ink-muted/60 bg-transparent px-0 py-2.5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-ink-muted/70 focus:border-wine focus:shadow-[0_1px_0_var(--color-wine)]'
+  'w-full border-0 border-b border-ink-muted bg-transparent px-0 py-2.5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-ink-muted/70 focus:border-wine focus:shadow-[0_1px_0_var(--color-wine)]'
 
 const labelClass = 'text-sm font-medium text-foreground'
 

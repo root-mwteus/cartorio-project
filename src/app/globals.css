@@ -112,6 +112,10 @@
     outline: 2px solid var(--color-wine);
     outline-offset: 2px;
   }
+  .bg-wine-deep:focus-visible,
+  .bg-wine-deep :focus-visible {
+    outline-color: var(--color-gold);
+  }
   /* Âncoras não podem parar embaixo do cabeçalho fixo. */
   [id] {
     scroll-margin-top: 5.5rem;
