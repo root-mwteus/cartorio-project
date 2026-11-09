@@ -26,6 +26,14 @@ export default function SobrePage() {
           reais.
         </p>
         <p>
+          A serventia acumula as atribuições delegadas de Registro de Imóveis, Tabelionato de Notas,
+          Tabelionato de Protesto de Títulos, Registro de Títulos e Documentos e Registro Civil de
+          Pessoas Jurídicas da {siteConfig.comarca}. O Registro de Imóveis conta com atendimento
+          digital pelo Portal ONR; os demais serviços são prestados em sua sede física, na{' '}
+          {siteConfig.address.street}, {siteConfig.address.neighborhood},{' '}
+          {siteConfig.address.city}/{siteConfig.address.state}.
+        </p>
+        <p>
           Nosso compromisso é oferecer um atendimento ágil, transparente e
           acessível — tanto presencialmente quanto pelos canais digitais — para
           cidadãos, profissionais do direito e instituições que dependem dos

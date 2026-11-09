@@ -17,7 +17,6 @@ export const siteConfig = {
   name: 'Serventia Notarial e Registral de Bom Conselho',
   nameLines: ['Serventia Notarial', 'e Registral de', 'Bom Conselho'],
   tradeName: 'Cartório Algacyr Barros',
-  // A serventia ainda não confirmou o CNS (fonte externa cita 07.396-5).
   cns: '074864',
   cnpj: '32.146.479/0001-65',
   comarca: 'Comarca de Bom Conselho — PE',
@@ -50,10 +49,10 @@ export const siteConfig = {
     opens: '08:00',
     closes: '17:00',
   },
-  // Canal provisório indicado pela serventia. Pendente: prazo de resposta.
+  // Canal provisório indicado pela serventia.
   ouvidoria: {
     email: generalEmail,
-    responseTime: null as string | null,
+    responseTime: '15 dias úteis' as string | null,
   },
   oversight: {
     provimentoUrl:
@@ -61,8 +60,7 @@ export const siteConfig = {
     corregedoriaUrl: 'https://portal.tjpe.jus.br/web/corregedoria/perguntas-frequentes',
     ouvidoriaUrl: 'https://portal.tjpe.jus.br/web/ouvidoria',
   },
-  // Provimento CNJ 134/2022, arts. 17 e 18. Enquanto null, /privacidade mostra
-  // o campo como pendente; preencher antes da publicação oficial.
+  // Provimento CNJ 134/2022, arts. 17 e 18. Campo null aparece marcado como pendente em /privacidade.
   privacy: {
     // Provisório até a nomeação do Encarregado (art. 18 pede nome, endereço e contato).
     encarregado: {
@@ -71,8 +69,8 @@ export const siteConfig = {
       email: generalEmail,
     },
     requestChannel: `${generalEmail} ou presencialmente em ${fullAddress}`,
-    responseTime: null as string | null,
-    retention: null as string | null,
-    updatedAt: null as string | null,
+    responseTime: '15 dias' as string | null,
+    retention: '5 anos' as string | null,
+    updatedAt: 'Novembro de 2026' as string | null,
   },
 }

@@ -153,7 +153,7 @@ export default function PrivacidadePage() {
         <p>
           Canal de atendimento ao titular:{' '}
           <Filled value={privacy.requestChannel} pending="canal eletrônico específico" />. Prazo de
-          resposta: <Filled value={privacy.responseTime} pending="prazo definido pela serventia" />.
+          resposta: <Filled value={privacy.responseTime} pending="prazo definido pela serventia" />, contados do requerimento (LGPD, art. 19, II).
         </p>
         <p>
           Reclamações sobre o atendimento também podem ser feitas pela{' '}
