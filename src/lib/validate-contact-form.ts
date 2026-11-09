@@ -19,6 +19,18 @@ export type ValidationResult =
   | { valid: true; isBot: true }
   | { valid: false; message: string }
 
+// Texto como foi digitado, limitado ao tamanho aceito, para devolver ao formulário em caso de erro.
+export function readContactFormValues(formData: FormData): ContactFormData {
+  const read = (field: keyof ContactFormData) =>
+    (formData.get(field)?.toString() ?? '').slice(0, MAX_LENGTH[field])
+  return {
+    name: read('name'),
+    email: read('email'),
+    subject: read('subject'),
+    message: read('message'),
+  }
+}
+
 export function validateContactForm(formData: FormData): ValidationResult {
   // Honeypot: campo invisível para usuários reais. Se vier preenchido, é bot.
   const honeypot = formData.get('website')?.toString().trim()
@@ -28,7 +40,8 @@ export function validateContactForm(formData: FormData): ValidationResult {
 
   const name = formData.get('name')?.toString().trim()
   const email = formData.get('email')?.toString().trim()
-  const subject = formData.get('subject')?.toString().trim()
+  // Sem quebras de linha: o assunto vira cabeçalho do e-mail de notificação.
+  const subject = formData.get('subject')?.toString().replace(/[\r\n\u2028\u2029]+/g, ' ').trim()
   const message = formData.get('message')?.toString().trim()
 
   if (!name || !email || !subject || !message) {

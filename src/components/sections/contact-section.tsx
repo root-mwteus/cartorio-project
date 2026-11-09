@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from 'react'
 import Link from 'next/link'
-import { Send, CheckCircle2, Loader2 } from 'lucide-react'
+import { Send, CheckCircle2, Loader2, MessageCircle, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { submitContactForm, type ContactFormState } from '@/app/actions/contact'
 import { siteConfig } from '@/lib/site-config'
@@ -22,8 +22,20 @@ const labelClass = 'text-sm font-medium text-foreground'
 
 const initialState: ContactFormState = { status: 'idle' }
 
+// shortcut: corta em 1500 caracteres porque URLs longas falham em alguns apps; o texto inteiro continua no formulário.
+function fallbackLinks({ name, email, subject, message }: NonNullable<ContactFormState['values']>) {
+  const body = encodeURIComponent(
+    `Nome: ${name}\nE-mail: ${email}\nAssunto: ${subject}\n\n${message}`.slice(0, 1500),
+  )
+  return {
+    whatsapp: `${siteConfig.whatsappUrl}?text=${body}`,
+    email: `mailto:${siteConfig.email.general}?subject=${encodeURIComponent(subject)}&body=${body}`,
+  }
+}
+
 function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState)
+  const links = state.fallback && state.values ? fallbackLinks(state.values) : null
 
   if (state.status === 'success') {
     return (
@@ -62,6 +74,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           required
           maxLength={100}
           autoComplete="name"
+          defaultValue={state.values?.name}
           placeholder="Seu nome"
           className={inputClass}
         />
@@ -78,6 +91,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           required
           maxLength={254}
           autoComplete="email"
+          defaultValue={state.values?.email}
           placeholder="voce@email.com"
           className={inputClass}
         />
@@ -93,6 +107,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           type="text"
           required
           maxLength={150}
+          defaultValue={state.values?.subject}
           placeholder="Ex: Emissão de certidão"
           className={inputClass}
         />
@@ -107,6 +122,7 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
           name="message"
           required
           maxLength={2000}
+          defaultValue={state.values?.message}
           rows={5}
           placeholder="Descreva sua dúvida ou solicitação"
           className={`${inputClass} resize-none`}
@@ -114,9 +130,37 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
       </div>
 
       {state.status === 'error' && (
-        <p role="alert" className="text-sm text-destructive">
-          {state.message}
-        </p>
+        <div role="alert" className="grid gap-3">
+          <p className="text-sm text-destructive">{state.message}</p>
+          {links && (
+            <div className="grid gap-2">
+              <Button
+                variant="outline"
+                size="lg"
+                nativeButton={false}
+                className="h-11 rounded-lg bg-paper px-4"
+                render={
+                  <a href={links.whatsapp} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                    Enviar mensagem direto pelo WhatsApp
+                  </a>
+                }
+              />
+              <Button
+                variant="outline"
+                size="lg"
+                nativeButton={false}
+                className="h-11 rounded-lg bg-paper px-4"
+                render={
+                  <a href={links.email}>
+                    <Mail className="h-4 w-4" aria-hidden="true" />
+                    Enviar por e-mail
+                  </a>
+                }
+              />
+            </div>
+          )}
+        </div>
       )}
 
       <Button
@@ -132,6 +176,14 @@ function ContactForm({ onRequestReset }: { onRequestReset: () => void }) {
         )}
         {isPending ? 'Enviando...' : 'Enviar mensagem'}
       </Button>
+
+      <p className="text-xs leading-relaxed text-ink-muted">
+        Usamos seus dados para responder a esta mensagem. Saiba mais no{' '}
+        <Link href="/privacidade" className="underline underline-offset-2 hover:text-foreground">
+          Aviso de Privacidade
+        </Link>
+        .
+      </p>
     </form>
   )
 }
@@ -177,8 +229,8 @@ export function ContactSection() {
               <div className="grid gap-1 border-b border-rule py-4 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-6">
                 <dt className="text-ink-muted">Horário</dt>
                 <dd className="text-foreground">
-                  Segunda a sexta-feira, das <span className="tabular-nums">08h às 17h</span>
-                  <span className="block text-sm text-ink-muted">Exceto feriados</span>
+                  {siteConfig.hours.label}
+                  <span className="block text-sm text-ink-muted">{siteConfig.hours.exceptions}</span>
                 </dd>
               </div>
 
@@ -200,8 +252,8 @@ export function ContactSection() {
                   <a href={`mailto:${siteConfig.email.general}`} className={`break-all ${link}`}>
                     {siteConfig.email.general}
                   </a>
-                  <a href={`mailto:${siteConfig.email.support}`} className={`break-all ${link}`}>
-                    {siteConfig.email.support}
+                  <a href={`mailto:${siteConfig.email.notes}`} className={`break-all ${link}`}>
+                    {siteConfig.email.notes}
                   </a>
                 </dd>
               </div>

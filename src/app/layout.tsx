@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Lora } from 'next/font/google'
+import { serializeJsonLd } from '@/lib/json-ld'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
@@ -14,37 +15,31 @@ const lora = Lora({
   variable: '--font-lora',
 })
 
+const pageTitle = `${siteConfig.name} | ${siteConfig.tradeName}`
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Registro de Imóveis de Bom Conselho - PE',
-    template: '%s | Cartório de Registro de Imóveis de Bom Conselho',
+    default: pageTitle,
+    template: `%s | ${siteConfig.name}`,
   },
   description:
-    'Atendimento digital e presencial do Cartório de Registro de Imóveis de Bom Conselho - PE. Registro de imóveis, certidões, averbações e mais.',
+    `Atendimento digital e presencial da ${siteConfig.name} (${siteConfig.tradeName}). Registro de imóveis, certidões, averbações e mais.`,
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: '/',
-    siteName: 'Cartório de Registro de Imóveis de Bom Conselho',
-    title: 'Registro de Imóveis de Bom Conselho - PE',
+    siteName: siteConfig.name,
+    title: pageTitle,
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
-    images: [
-      {
-        url: '/cartorio-hero.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Cartório de Registro de Imóveis de Bom Conselho - PE',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Registro de Imóveis de Bom Conselho - PE',
+    title: pageTitle,
     description:
       'Atendimento digital e presencial com segurança jurídica. Certidões, matrícula on-line, e-Protocolo e mais.',
-    images: ['/cartorio-hero.jpg'],
+    images: ['/opengraph-image'],
   },
   // TEMPORÁRIO: site ainda não tem autorização do cartório para ficar
   // indexável publicamente. Reative index/follow depois de confirmado.
@@ -68,7 +63,8 @@ const jsonLd = {
   // órgãos do governo.
   '@type': 'LegalService',
   name: siteConfig.name,
-  image: `${siteConfig.url}/cartorio-hero.jpg`,
+  alternateName: siteConfig.tradeName,
+  image: `${siteConfig.url}/opengraph-image`,
   url: siteConfig.url,
   telephone: siteConfig.phoneDisplay,
   email: siteConfig.email.general,
@@ -82,9 +78,9 @@ const jsonLd = {
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
-    closes: '17:00',
+    dayOfWeek: siteConfig.hours.dayOfWeek,
+    opens: siteConfig.hours.opens,
+    closes: siteConfig.hours.closes,
   },
 }
 
@@ -110,7 +106,7 @@ export default function RootLayout({
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </body>
     </html>

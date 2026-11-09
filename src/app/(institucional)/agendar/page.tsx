@@ -7,7 +7,7 @@ import { InstitutionalPageHeader } from '../_components/page-header'
 export const metadata: Metadata = {
   title: 'Agendar Visita',
   description:
-    'Agende seu atendimento presencial no Cartório de Registro de Imóveis de Bom Conselho - PE.',
+    `Agende seu atendimento presencial na ${siteConfig.name}, em Bom Conselho - PE.`,
 }
 
 export default function AgendarPage() {
@@ -17,8 +17,8 @@ export default function AgendarPage() {
       <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted-foreground">
         <p>
           O atendimento presencial pode ser agendado com antecedência, o que
-          reduz o tempo de espera na serventia. Nosso horário de funcionamento é
-          de segunda a sexta-feira, das 08h às 17h, exceto feriados.
+          reduz o tempo de espera na serventia. Nosso horário de funcionamento é{' '}
+          {siteConfig.hours.sentence}.
         </p>
         <p>
           Para agendar, envie uma mensagem pelo WhatsApp informando o serviço

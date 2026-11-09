@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { label: "Início", href: "/#inicio" },
@@ -58,10 +59,11 @@ export function SiteHeader() {
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="font-serif text-sm font-semibold text-foreground">
-              Registro de Imóveis de Bom Conselho
+              <span className="lg:hidden">{siteConfig.tradeName}</span>
+              <span className="hidden lg:inline">{siteConfig.name}</span>
             </span>
             <span className="text-xs text-muted-foreground">
-              CNS 074864 — Bom Conselho/PE
+              <span className="hidden lg:inline">{siteConfig.tradeName} · </span>CNS {siteConfig.cns} — {siteConfig.address.city}/{siteConfig.address.state}
             </span>
           </span>
         </Link>

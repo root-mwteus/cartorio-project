@@ -10,9 +10,9 @@ const shortcuts = [
 ]
 
 const facts = [
-  { label: 'Atendimento', value: 'Seg. a sex., 08h às 17h' },
-  { label: 'Localização', value: `${siteConfig.address.city} — ${siteConfig.address.state}` },
-  { label: 'CNS', value: '074864' },
+  { label: 'Atendimento', value: siteConfig.hours.short },
+  { label: 'Localização', value: siteConfig.comarca },
+  { label: 'CNS', value: siteConfig.cns },
 ]
 
 export function HeroSection() {
@@ -30,10 +30,12 @@ export function HeroSection() {
 
           <h1
             id="hero-title"
-            className="mt-8 max-w-[15ch] text-balance font-serif text-[clamp(2.75rem,7vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-foreground motion-safe:animate-rise"
+            className="mt-8 max-w-[18ch] text-balance font-serif text-[clamp(2.5rem,5.4vw,4rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-foreground motion-safe:animate-rise"
           >
-            Registro de Imóveis de Bom Conselho
+            {siteConfig.name}
           </h1>
+
+          <p className="mt-3 font-serif text-2xl italic text-gold-text">{siteConfig.tradeName}</p>
 
           <p className="mt-6 max-w-[36rem] text-pretty text-lg leading-relaxed text-ink-muted">
             Atendimento digital e presencial com segurança jurídica. Solicite certidões,
@@ -42,9 +44,9 @@ export function HeroSection() {
           </p>
 
           <p className="mt-8 border-l-2 border-gold pl-4">
-            <span className="block text-sm text-ink-muted">Oficial Registrador</span>
+            <span className="block text-sm text-ink-muted">{siteConfig.officer.title}</span>
             <span className="mt-0.5 block font-serif text-xl italic text-foreground">
-              Algacyr Fernando Vieira de Barros
+              {siteConfig.officer.name}
             </span>
           </p>
 

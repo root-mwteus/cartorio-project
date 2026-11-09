@@ -29,11 +29,16 @@ const securityHeaders = [
 // que uma política estrita pode bloquear, e o acesso via IP da rede local
 // (LAN, para testar no celular) roda sobre HTTP sem TLS.
 if (process.env.NODE_ENV === 'production') {
-  securityHeaders.push({ key: 'Content-Security-Policy', value: csp })
+  securityHeaders.push(
+    { key: 'Content-Security-Policy', value: csp },
+    { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+    { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+  )
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
   allowedDevOrigins: ['192.168.3.9'],
   async headers() {
     return [
