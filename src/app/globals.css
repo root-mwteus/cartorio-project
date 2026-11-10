@@ -122,33 +122,6 @@
   }
 }
 
-/* Linha do índice: a faixa de linho entra da esquerda, como marca-texto. */
-.index-row {
-  isolation: isolate;
-}
-.index-row::before {
-  content: '';
-  position: absolute;
-  inset: 0 -1rem;
-  z-index: -1;
-  background: var(--color-linen);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.index-row:hover::before,
-.index-row:focus-within::before {
-  transform: scaleX(1);
-}
-
-@keyframes ficha-in {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 -1rem 0);
-  }
-}
 @keyframes path-draw {
   from {
     transform: scaleX(0);
@@ -167,9 +140,6 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ficha-in {
-    animation: ficha-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
   .loading-rule {
     transform-origin: left;
     animation: loading-rule 1.2s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
@@ -185,8 +155,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .index-row::before {
-    transition: none;
-  }
-}

@@ -31,15 +31,29 @@ function subscribe(onChange: () => void) {
 }
 
 // Feriados não são conhecidos aqui: o texto fala do horário, não de porta aberta.
-export function ExpedienteStatus({ className = '' }: { className?: string }) {
+export function ExpedienteStatus({
+  className = '',
+  tone = 'light',
+}: {
+  className?: string
+  tone?: 'light' | 'dark'
+}) {
   const status = useSyncExternalStore(subscribe, readStatus, () => null)
   if (!status) return null
 
   return (
-    <span className={`flex items-center gap-2 text-sm text-ink-muted ${className}`}>
+    <span className={`flex items-center gap-2 text-sm ${tone === 'dark' ? 'text-paper/80' : 'text-ink-muted'} ${className}`}>
       <span
         aria-hidden="true"
-        className={`h-2 w-2 ${status === 'open' ? 'bg-wine' : 'border border-ink-muted'}`}
+        className={`h-2 w-2 ${
+          tone === 'dark'
+            ? status === 'open'
+              ? 'rounded-full bg-[oklch(0.78_0.15_150)]'
+              : 'rounded-full border border-paper/60'
+            : status === 'open'
+              ? 'bg-wine'
+              : 'border border-ink-muted'
+        }`}
       />
       {status === 'open' ? 'Agora: dentro do horário' : 'Agora: fora do horário'}
     </span>

@@ -50,10 +50,10 @@ export function HeroSection() {
                 }
               />
               <a
-                href="#triagem"
+                href="#servicos"
                 className="self-start py-2 text-base font-medium text-primary underline decoration-gold underline-offset-[6px] transition-colors hover:decoration-primary sm:self-auto"
               >
-                Descobrir qual ato pedir
+                Ver atos e serviços
               </a>
             </div>
           </div>

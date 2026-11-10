@@ -35,7 +35,7 @@ export function SiteHeader() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const sections = ["inicio", "triagem", "servicos", "prazos", "contato"]
+    const sections = ["inicio", "servicos", "prazos", "contato"]
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null);
 
