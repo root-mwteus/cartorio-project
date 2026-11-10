@@ -6,13 +6,7 @@ import { SiteFooter } from '@/components/layout/site-footer'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function Error({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -28,7 +22,9 @@ export default function Error({
           Tente novamente. Se o problema continuar, fale conosco pelo WhatsApp{' '}
           <span className="tabular-nums">{siteConfig.whatsappDisplay}</span>.
         </p>
-        <Button size="lg" className="mt-8" onClick={() => reset()}>
+        {/* Recarrega em vez de reset(): uma aba aberta antes de um deploy novo só se
+            recupera baixando a versão atual da página. */}
+        <Button size="lg" className="mt-8" onClick={() => window.location.reload()}>
           Tentar novamente
         </Button>
       </main>
