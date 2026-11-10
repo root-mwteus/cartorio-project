@@ -68,7 +68,7 @@ export default function PrivacidadePage() {
             <dd className="inline">{privacy.encarregado.responsible}</dd>
           </div>
           <div>
-            <dt className="inline font-medium text-foreground">Endereço para correspondência: </dt>
+            <dt className="inline font-medium text-foreground">Endereço: </dt>
             <dd className="inline">
               <Filled value={privacy.encarregado.address} pending="endereço do Encarregado" />
             </dd>
