@@ -6,7 +6,6 @@ import {
   Accessibility,
   ChevronLeft,
   ChevronRight,
-  FileCheck2,
   Landmark,
   Pause,
   Play,
@@ -37,17 +36,14 @@ const slides: Slide[] = [
     tag: 'Ação Social',
     title: 'Campanha Cartórios de Luz',
     text: 'Entrega de kits educativos e de cuidados para crianças em Bom Conselho em parceria com a comunidade.',
+    // Fotos com crianças só voltam com autorização dos responsáveis (LGPD, art. 14).
     icon: Landmark,
-    image: '/galeria/fachada-cartorios-de-luz.jpg',
-    alt: 'Fachada oficial do Cartório Algacyr Barros com a equipe e crianças atendidas pela ação social',
   },
   {
     tag: 'Cidadania e Comunidade',
     title: 'Ação Social na Zona Rural',
     text: 'Compromisso e presença junto às famílias da comunidade do Sítio Mata Verde em Bom Conselho.',
     icon: Users,
-    image: '/galeria/acao-social-mata-verde.jpg',
-    alt: 'Equipe da serventia em ação comunitária com moradores no Sítio Mata Verde, zona rural de Bom Conselho',
   },
   {
     tag: 'Compromisso',
