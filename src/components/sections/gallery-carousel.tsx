@@ -26,12 +26,12 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    tag: 'Colaboradores',
-    title: 'Nossa equipe de atendimento',
-    text: 'Equipe preparada para orientar você com agilidade e segurança jurídica.',
+    tag: 'Conscientização & Integração',
+    title: 'Campanha Outubro Rosa',
+    text: 'Encontro de prevenção e conscientização promovido pelo Cartório Algacyr Barros em parceria com serventia convidada.',
     icon: Users,
     image: '/galeria/equipe-outubro-rosa.jpg',
-    alt: 'Equipe do Cartório Algacyr Barros reunida em ação institucional e atendimento humanizado',
+    alt: 'Encontro de conscientização do Outubro Rosa promovido pelo Cartório Algacyr Barros em conjunto com equipes de serventias parceiras',
   },
   {
     tag: 'Ação Social',
