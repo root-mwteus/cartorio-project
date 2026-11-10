@@ -8,7 +8,7 @@ import { Filled } from '../_components/pending'
 export const metadata: Metadata = {
   title: 'Aviso de Privacidade',
   description:
-    `Como a ${siteConfig.name} trata dados pessoais, conforme a LGPD e o Provimento CNJ nº 134/2022.`,
+    `Como a ${siteConfig.name} trata dados pessoais na navegação deste site, conforme a LGPD e o Provimento CNJ nº 134/2022.`,
 }
 
 const { address, privacy, officer } = siteConfig
@@ -21,13 +21,6 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
     </section>
   )
 }
-
-const operators = [
-  ['Vercel', 'hospedagem do site e métricas agregadas de acesso'],
-  ['Supabase', 'armazenamento das mensagens do formulário'],
-  ['Resend', 'envio da notificação de nova mensagem à serventia'],
-  ['Upstash', 'controle do limite de envios, a partir do endereço IP'],
-]
 
 const rights = [
   'confirmação da existência de tratamento e acesso aos dados;',
@@ -44,8 +37,9 @@ export default function PrivacidadePage() {
     <article>
       <InstitutionalPageHeader title="Aviso de Privacidade" />
       <p className="mt-8 text-pretty leading-relaxed text-ink-muted">
-        Este aviso explica como esta serventia trata dados pessoais neste site, em atenção à Lei
-        nº 13.709/2018 (LGPD) e ao Provimento nº 134/2022 da Corregedoria Nacional de Justiça.
+        Este aviso explica como esta serventia trata dados pessoais na navegação deste site, em
+        atenção à Lei nº 13.709/2018 (LGPD) e ao Provimento nº 134/2022 da Corregedoria Nacional
+        de Justiça. O site não tem formulários e não pede dados pessoais.
       </p>
 
       <Section title="Quem é o responsável pelos seus dados">
@@ -80,55 +74,46 @@ export default function PrivacidadePage() {
         </dl>
       </Section>
 
-      <Section title="Quais dados este site coleta">
+      <Section title="O que é registrado quando você navega">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <strong className="font-medium text-foreground">Formulário de contato:</strong> nome,
-            e-mail, assunto e mensagem que você escrever.
+            <strong className="font-medium text-foreground">Dados técnicos de acesso:</strong>{' '}
+            endereço IP, navegador e página visitada, registrados pela hospedagem por tempo limitado
+            para manter o site seguro e funcionando.
           </li>
           <li>
-            <strong className="font-medium text-foreground">Endereço IP:</strong> usado ao enviar o
-            formulário, para limitar envios abusivos.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">Navegação:</strong> métricas agregadas
-            de acesso. O site não usa cookies de publicidade.
+            <strong className="font-medium text-foreground">Métricas de acesso:</strong> números
+            agregados de visitas e páginas mais vistas, sem cookies.
           </li>
         </ul>
-        <p>
-          Evite incluir na mensagem dados pessoais que não sejam necessários para o atendimento.
-        </p>
+        <p>O site não usa cookies de publicidade nem de rastreamento.</p>
       </Section>
 
       <Section title="Para que usamos e com qual fundamento">
         <p>
-          Usamos os dados para responder à sua solicitação, prestar o atendimento e proteger o
-          site contra abusos. O tratamento atende à finalidade do serviço público delegado, na
-          persecução do interesse público (Provimento nº 134/2022, art. 2º; LGPD, art. 23).
+          Usamos esses dados para manter o site seguro, corrigir falhas e entender, de forma
+          agregada, como ele é usado. O tratamento atende à finalidade do serviço público delegado,
+          na persecução do interesse público (Provimento nº 134/2022, art. 2º; LGPD, art. 23).
         </p>
       </Section>
 
       <Section title="Com quem os dados são compartilhados">
-        <p>Estes fornecedores tratam dados em nome da serventia, e podem operar fora do Brasil:</p>
-        <ul className="list-disc space-y-1 pl-5">
-          {operators.map(([name, purpose]) => (
-            <li key={name}>
-              <strong className="font-medium text-foreground">{name}:</strong> {purpose}.
-            </li>
-          ))}
-        </ul>
         <p>
-          O Portal Integrado do ONR, o WhatsApp e outros serviços externos têm regras de privacidade
-          próprias. Também pode haver compartilhamento quando exigido por lei ou por autoridade
+          A Vercel hospeda o site e gera as métricas de acesso em nome da serventia, e pode operar
+          fora do Brasil. Também pode haver compartilhamento quando exigido por lei ou por autoridade
           competente.
         </p>
       </Section>
 
-      <Section title="Por quanto tempo guardamos">
+      <Section title="Quando você entra em contato">
         <p>
-          Mensagens do formulário:{' '}
-          <Filled value={privacy.retention} pending="prazo de conservação definido pela serventia" />
-          .
+          Os botões de WhatsApp, telefone e e-mail levam você aos canais da serventia, fora deste
+          site. O que você enviar por esses canais é tratado pela serventia para responder ao seu
+          atendimento.
+        </p>
+        <p>
+          O WhatsApp, o seu provedor de e-mail, o Portal Integrado do ONR, o Tribunal de Justiça de
+          Pernambuco e o Google Maps têm regras de privacidade próprias.
         </p>
       </Section>
 

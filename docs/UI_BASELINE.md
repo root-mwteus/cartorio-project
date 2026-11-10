@@ -237,6 +237,8 @@ Os números não podem mudar sem validação do cartório. O FAQ cita a seção 
 
 ### 6.4 Formulário de contato
 
+> **Atualização (10/11/2026):** o formulário de contato foi removido. O site não coleta mais dados pessoais, e o atendimento passou a ser só pelos canais da serventia (WhatsApp, telefone e e-mail). Esta seção fica como registro histórico.
+
 | Mecanismo | Arquivo | Regra |
 |---|---|---|
 | Server Action `submitContactForm` | `src/app/actions/contact.ts` | A ordem não muda: rate-limit → validação → honeypot → Supabase → Resend |
