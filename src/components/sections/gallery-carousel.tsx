@@ -119,48 +119,15 @@ export function GalleryCarousel() {
       }}
     >
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-          <div>
-            <h2
-              id="galeria-title"
-              className="text-balance font-serif text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
-            >
-              Vida na serventia
-            </h2>
-            <p className="mt-2 max-w-[38rem] text-pretty leading-relaxed text-ink-muted">
-              A equipe, o trabalho diário e as campanhas de que a serventia participa.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className={control}
-              onClick={() => setPlaying((value) => !value)}
-              aria-label={playing ? 'Pausar a passagem automática' : 'Retomar a passagem automática'}
-            >
-              {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
-            </button>
-            <button
-              type="button"
-              className={control}
-              onClick={() => goTo((active - 1 + slides.length) % slides.length)}
-              aria-label="Slide anterior"
-              aria-controls="galeria-trilha"
-            >
-              <ChevronLeft className="size-5" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              className={control}
-              onClick={() => goTo((active + 1) % slides.length)}
-              aria-label="Próximo slide"
-              aria-controls="galeria-trilha"
-            >
-              <ChevronRight className="size-5" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
+        <h2
+          id="galeria-title"
+          className="text-balance font-serif text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
+        >
+          Vida na serventia
+        </h2>
+        <p className="mt-2 max-w-[38rem] text-pretty leading-relaxed text-ink-muted">
+          A equipe, o trabalho diário e as campanhas de que a serventia participa.
+        </p>
 
         <ul
           id="galeria-trilha"
@@ -218,7 +185,26 @@ export function GalleryCarousel() {
           })}
         </ul>
 
-        <div className="mt-2 flex justify-center gap-1" role="group" aria-label="Escolher slide">
+        {/* Controles centralizados: o canto direito é do botão flutuante do WhatsApp. */}
+        <div className="mt-4 flex items-center justify-center gap-1 sm:gap-2">
+          <button
+            type="button"
+            className={control}
+            onClick={() => setPlaying((value) => !value)}
+            aria-label={playing ? 'Pausar a passagem automática' : 'Retomar a passagem automática'}
+          >
+            {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
+          </button>
+          <button
+            type="button"
+            className={control}
+            onClick={() => goTo((active - 1 + slides.length) % slides.length)}
+            aria-label="Slide anterior"
+            aria-controls="galeria-trilha"
+          >
+            <ChevronLeft className="size-5" aria-hidden="true" />
+          </button>
+          <div className="flex" role="group" aria-label="Escolher slide">
           {slides.map((slide, index) => (
             <button
               key={slide.title}
@@ -226,15 +212,25 @@ export function GalleryCarousel() {
               onClick={() => goTo(index)}
               aria-label={`Ir para o slide ${index + 1}: ${slide.title}`}
               aria-current={index === active ? 'true' : undefined}
-              className="group/dot inline-flex size-11 items-center justify-center"
+              className="group/dot inline-flex h-11 w-7 items-center justify-center sm:w-11"
             >
               <span
                 className={`block h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${
-                  index === active ? 'w-6 bg-wine' : 'w-1.5 bg-ink-muted/40 group-hover/dot:bg-gold-text'
+                  index === active ? 'w-5 bg-wine sm:w-6' : 'w-1.5 bg-ink-muted/40 group-hover/dot:bg-gold-text'
                 }`}
               />
             </button>
           ))}
+          </div>
+          <button
+            type="button"
+            className={control}
+            onClick={() => goTo((active + 1) % slides.length)}
+            aria-label="Próximo slide"
+            aria-controls="galeria-trilha"
+          >
+            <ChevronRight className="size-5" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </section>
