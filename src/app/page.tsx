@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/sections/hero-section'
 import { ServicesBento } from '@/components/sections/services-bento'
 import { PrepareSection } from '@/components/sections/prepare-section'
 import { ContactSection } from '@/components/sections/contact-section'
+import { GalleryCarousel } from '@/components/sections/gallery-carousel'
 
 export default function Page() {
   return (
@@ -14,6 +15,7 @@ export default function Page() {
         <ServicesBento />
         <PrepareSection />
         <ContactSection />
+        <GalleryCarousel />
       </main>
       <SiteFooter />
     </div>
