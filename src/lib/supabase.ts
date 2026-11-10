@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
+import { readEnv } from './env'
 
 export function createSupabaseServerClient() {
-  return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
+  return createClient(readEnv('SUPABASE_URL'), readEnv('SUPABASE_ANON_KEY'))
 }

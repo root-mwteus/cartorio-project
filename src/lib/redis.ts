@@ -1,15 +1,10 @@
 import { Redis } from '@upstash/redis'
-
-// Valores colados com aspas, espaços ou quebra de linha (como na aba .env do
-// Upstash) quebram o fetch do cliente com TypeError.
-function clean(value: string | undefined) {
-  return (value ?? '').trim().replace(/^(['"])(.*)\1$/, '$2').trim()
-}
+import { readEnv } from './env'
 
 export function getRedisConfig() {
   return {
-    url: clean(process.env.UPSTASH_REDIS_REST_URL),
-    token: clean(process.env.UPSTASH_REDIS_REST_TOKEN),
+    url: readEnv('UPSTASH_REDIS_REST_URL'),
+    token: readEnv('UPSTASH_REDIS_REST_TOKEN'),
   }
 }
 
