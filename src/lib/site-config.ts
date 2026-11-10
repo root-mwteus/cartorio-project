@@ -70,7 +70,6 @@ export const siteConfig = {
     },
     requestChannel: `${generalEmail} ou presencialmente em ${fullAddress}`,
     responseTime: '15 dias' as string | null,
-    retention: '5 anos' as string | null,
     updatedAt: 'Novembro de 2026' as string | null,
   },
 }
