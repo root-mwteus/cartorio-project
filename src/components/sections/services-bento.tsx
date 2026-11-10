@@ -66,20 +66,24 @@ export function ServicesBento() {
             <h3 className="font-serif text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-tight text-foreground">
               Certidão de matrícula
             </h3>
-            <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className={`${badge} bg-linen`}>
-                <Clock className="h-4 w-4 text-gold-text" aria-hidden="true" />
-                {deadlineText(certidaoMatricula)}
-              </span>
-              <span className="text-sm text-ink-muted">{certidaoMatricula.basis}</span>
-            </p>
-            <p className="mt-5 max-w-[46ch] text-pretty leading-relaxed text-ink-muted">
+            <p className="mt-4 max-w-[46ch] text-pretty leading-relaxed text-ink-muted">
               Inteiro teor em formato digital, com validade jurídica. Tenha o número da matrícula
               em mãos.
             </p>
-            <div className="mt-auto flex flex-col gap-3 pt-10 sm:flex-row sm:items-center sm:gap-6">
+            <div className="mt-8 lg:mt-auto lg:pt-12">
+              <p className="flex items-baseline gap-3 text-ink-muted">
+                <span>{certidaoMatricula.prefix}</span>
+                <span className="font-serif text-[clamp(4.5rem,9vw,8rem)] leading-[0.85] tabular-nums text-foreground">
+                  {certidaoMatricula.from}
+                </span>
+                <span>{certidaoMatricula.unit}</span>
+              </p>
+              <p className="mt-3 text-sm text-ink-muted">{certidaoMatricula.basis}</p>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 border-t border-rule pt-6 sm:flex-row sm:items-center sm:gap-6">
               <Button
                 size="lg"
+                className="h-auto min-h-12 shrink whitespace-normal py-3 text-center"
                 nativeButton={false}
                 render={
                   <a href={whatsappLink(messages.certidao)} target="_blank" rel="noopener noreferrer">
@@ -148,7 +152,7 @@ export function ServicesBento() {
           </article>
 
           <article
-            className={`${cell} bg-wine-deep text-paper lg:col-span-12 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-10`}
+            className={`${cell} bg-wine-deep text-paper lg:col-span-12 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:gap-10`}
           >
             <div>
               <h3 className="font-serif text-xl font-normal text-paper/85">Atendimento pelo WhatsApp</h3>
@@ -156,7 +160,7 @@ export function ServicesBento() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-block font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-none tabular-nums text-paper transition-colors hover:text-gold"
+                className="mt-2 inline-block font-serif sm:whitespace-nowrap text-[clamp(2.25rem,6vw,4.5rem)] leading-none tabular-nums text-paper transition-colors hover:text-gold"
               >
                 {siteConfig.whatsappDisplay}
                 <span className="sr-only"> (abre o WhatsApp em nova aba)</span>

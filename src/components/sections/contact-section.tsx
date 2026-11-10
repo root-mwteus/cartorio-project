@@ -28,7 +28,7 @@ export function ContactSection() {
           dia útil.
         </p>
 
-        <div className="mt-10 grid gap-10 sm:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+        <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-10 sm:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
           <div>
             <h3 className="font-serif text-2xl font-medium text-foreground">
               Ficha da serventia
