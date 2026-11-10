@@ -103,7 +103,7 @@ export function PrepareSection() {
                   <span className={word}> {deadline.unit}</span>
                 </td>
                 <td className="py-6 text-sm leading-relaxed max-md:col-span-2 max-md:p-0">
-                  <span className="block font-medium text-foreground">{deadline.basis}</span>
+                  <span className="block font-medium tabular-nums text-foreground">{deadline.basis}</span>
                   <span className="mt-1 block max-w-[52ch] text-ink-muted">{deadline.note}</span>
                 </td>
               </tr>
@@ -113,7 +113,7 @@ export function PrepareSection() {
 
         <p
           id="nota-prazos"
-          className="mt-6 max-w-[72ch] text-sm leading-relaxed text-ink-muted"
+          className="mt-6 max-w-[72ch] text-sm leading-relaxed tabular-nums text-ink-muted"
         >
           <sup className="mr-1 font-serif text-gold-text">1</sup>
           Prazos contados em dias e horas úteis, conforme o art. 9º, § 1º, da Lei Federal
@@ -132,7 +132,7 @@ export function PrepareSection() {
                     aria-hidden="true"
                     className="absolute -left-[5px] top-6 h-2 w-2 bg-wine md:-top-[3px] md:left-0"
                   />
-                  <h4 className="font-serif text-2xl font-medium text-foreground">{item.step}</h4>
+                  <h4 className="font-serif text-2xl font-normal text-foreground">{item.step}</h4>
                   <p className="mt-1 text-sm font-medium tabular-nums text-foreground">{item.when}</p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.detail}</p>
                 </li>

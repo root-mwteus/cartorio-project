@@ -3,7 +3,7 @@ import { ArrowUpRight, Clock, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { deadlineText, legalDeadlines } from '@/lib/legal-deadlines'
 import { siteConfig } from '@/lib/site-config'
-import { whatsappLink } from '@/lib/whatsapp'
+import { generalMessage, whatsappLink } from '@/lib/whatsapp'
 import { ExpedienteStatus } from './expediente-status'
 
 const messages = {
@@ -11,7 +11,7 @@ const messages = {
   consulta: 'Olá! Preciso de ajuda para consultar uma matrícula ou fazer uma pesquisa de bens.',
   registro: 'Olá! Tenho uma dúvida sobre o registro de uma escritura ou título.',
   registrar: 'Olá! Quero registrar um imóvel. Quais documentos preciso apresentar?',
-  duvida: 'Olá! Tenho uma dúvida sobre os serviços do cartório.',
+  duvida: generalMessage,
 }
 
 const quickMessages = [
@@ -78,7 +78,7 @@ export function ServicesBento() {
                 </span>
                 <span>{certidaoMatricula.unit}</span>
               </p>
-              <p className="mt-3 text-sm text-ink-muted">{certidaoMatricula.basis}</p>
+              <p className="mt-3 text-sm tabular-nums text-ink-muted">{certidaoMatricula.basis}</p>
             </div>
             <div className="mt-8 flex flex-col gap-3 border-t border-rule pt-6 sm:flex-row sm:items-center sm:gap-6">
               <Button

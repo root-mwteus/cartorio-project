@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
+import { generalMessage, whatsappLink } from '@/lib/whatsapp'
 import { CopyValue } from './copy-value'
 import { ExpedienteStatus } from './expediente-status'
 
@@ -30,7 +31,7 @@ export function ContactSection() {
 
         <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-10 sm:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
           <div>
-            <h3 className="font-serif text-2xl font-medium text-foreground">
+            <h3 className="font-serif text-2xl font-normal text-foreground">
               Ficha da serventia
             </h3>
             <dl className="mt-4 border-t-2 border-foreground text-sm sm:text-base">
@@ -115,8 +116,8 @@ export function ContactSection() {
             </dl>
           </div>
 
-          <div className="flex flex-col self-start bg-linen p-6 sm:p-10">
-            <h3 className="font-serif text-2xl font-medium text-foreground">Fale pelo WhatsApp</h3>
+          <div className="flex flex-col self-start border border-rule bg-linen p-6 transition-colors duration-200 hover:border-gold/60 motion-reduce:transition-none sm:p-10">
+            <h3 className="font-serif text-2xl font-normal text-foreground">Fale pelo WhatsApp</h3>
             <p className="mt-2 text-pretty leading-relaxed text-ink-muted">
               Tire dúvidas, peça orientações sobre documentos e agende seu atendimento com a
               equipe da serventia.
@@ -141,7 +142,7 @@ export function ContactSection() {
               nativeButton={false}
               className="mt-8 w-full"
               render={
-                <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <a href={whatsappLink(generalMessage)} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   Iniciar conversa no WhatsApp
                   <span className="sr-only">(abre em nova aba)</span>
