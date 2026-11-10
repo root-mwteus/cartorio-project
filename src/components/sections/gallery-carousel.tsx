@@ -110,7 +110,7 @@ export function GalleryCarousel() {
       id="galeria"
       aria-labelledby="galeria-title"
       aria-roledescription="carrossel"
-      className="border-t border-rule bg-linen"
+      className="border-y border-rule bg-linen"
       onMouseEnter={() => setHeld(true)}
       onMouseLeave={() => setHeld(false)}
       onFocus={() => setHeld(true)}
@@ -118,16 +118,16 @@ export function GalleryCarousel() {
         if (!event.currentTarget.contains(event.relatedTarget)) setHeld(false)
       }}
     >
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
           <div>
             <h2
               id="galeria-title"
-              className="text-balance font-serif text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
+              className="text-balance font-serif text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
             >
               Vida na serventia
             </h2>
-            <p className="mt-3 max-w-[38rem] text-pretty leading-relaxed text-ink-muted sm:text-lg">
+            <p className="mt-2 max-w-[38rem] text-pretty leading-relaxed text-ink-muted">
               A equipe, o trabalho diário e as campanhas de que a serventia participa.
             </p>
           </div>
@@ -174,7 +174,7 @@ export function GalleryCarousel() {
             targetRef.current = null
           }}
           aria-live={playing && !held ? 'off' : 'polite'}
-          className="relative mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] sm:gap-6 lg:mt-12 [&::-webkit-scrollbar]:hidden"
+          className="relative mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] sm:gap-6 lg:mt-8 [&::-webkit-scrollbar]:hidden"
         >
           {slides.map((slide, index) => {
             const Icon = slide.icon
@@ -184,7 +184,7 @@ export function GalleryCarousel() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} de ${slides.length}`}
-                className="w-[85%] shrink-0 snap-start sm:w-[62%] lg:w-[calc((100%-3rem)/2.3)]"
+                className="w-[85%] shrink-0 snap-start sm:w-[62%] lg:w-[calc((100%-3rem)/2.6)]"
               >
                 <article className="group h-full border border-rule bg-paper transition-colors duration-200 hover:border-gold/60 motion-reduce:transition-none">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-t-sm bg-wine-deep">
@@ -193,7 +193,7 @@ export function GalleryCarousel() {
                         src={slide.image}
                         alt={slide.alt ?? ''}
                         fill
-                        sizes="(min-width: 1024px) 40vw, (min-width: 640px) 62vw, 85vw"
+                        sizes="(min-width: 1024px) 36vw, (min-width: 640px) 62vw, 85vw"
                         className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
                       />
                     ) : (
@@ -218,7 +218,7 @@ export function GalleryCarousel() {
           })}
         </ul>
 
-        <div className="mt-4 flex justify-center gap-1" role="group" aria-label="Escolher slide">
+        <div className="mt-2 flex justify-center gap-1" role="group" aria-label="Escolher slide">
           {slides.map((slide, index) => (
             <button
               key={slide.title}

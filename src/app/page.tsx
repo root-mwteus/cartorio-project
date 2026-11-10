@@ -12,10 +12,10 @@ export default function Page() {
       <SiteHeader />
       <main id="main">
         <HeroSection />
+        <GalleryCarousel />
         <ServicesBento />
         <PrepareSection />
         <ContactSection />
-        <GalleryCarousel />
       </main>
       <SiteFooter />
     </div>
