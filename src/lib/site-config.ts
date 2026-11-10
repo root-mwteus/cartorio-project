@@ -62,13 +62,17 @@ export const siteConfig = {
   },
   // Provimento CNJ 134/2022, arts. 17 e 18. Campo null aparece marcado como pendente em /privacidade.
   privacy: {
-    // Provisório até a nomeação do Encarregado (art. 18 pede nome, endereço e contato).
+    // Encarregado terceirizado (Provimento 134, art. 10, I). Endereço: o da serventia
+    // como ponto de correspondência, até a DPONet informar o seu.
     encarregado: {
-      name: 'Nomeação em andamento; atendimento provisório pelo canal institucional da serventia',
+      name: 'DPONet (DPONET TECNOLOGIA LTDA)',
+      cnpj: '36.487.128/0001-79',
+      responsible: 'Renata Mercadante (suplente: Natália Caroline Batista)',
       address: fullAddress,
-      email: generalEmail,
+      email: 'dpo@dponet.com.br',
     },
-    requestChannel: `${generalEmail} ou presencialmente em ${fullAddress}`,
+    // Art. 17: o canal do titular pode ser o do próprio Encarregado, se terceirizado.
+    requestChannel: `dpo@dponet.com.br ou presencialmente na serventia, em ${fullAddress}`,
     responseTime: '15 dias' as string | null,
     updatedAt: 'Novembro de 2026' as string | null,
   },
