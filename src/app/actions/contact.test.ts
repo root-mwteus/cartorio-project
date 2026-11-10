@@ -64,6 +64,12 @@ describe('submitContactForm', () => {
     expect(mocks.insert).not.toHaveBeenCalled()
   })
 
+  it('aceita CONTACT_NOTIFICATION_EMAIL colado com aspas', async () => {
+    vi.stubEnv('CONTACT_NOTIFICATION_EMAIL', ' "destino@example.com" ')
+    await expect(submit()).resolves.toEqual({ status: 'success' })
+    expect(mocks.send).toHaveBeenCalledWith(expect.objectContaining({ to: 'destino@example.com' }))
+  })
+
   it.each(['RESEND_API_KEY', 'CONTACT_NOTIFICATION_EMAIL'])(
     'não grava a mensagem sem %s',
     async (name) => {
@@ -125,11 +131,15 @@ describe('submitContactForm', () => {
   it('não grava dados pessoais nos logs quando o Resend falha', async () => {
     mocks.send.mockResolvedValue({
       data: null,
-      error: { name: 'validation_error', message: 'destino maria@example.com recusado' },
+      error: {
+        name: 'validation_error',
+        message: 'You can only send testing emails to your own email address (maria@example.com).',
+      },
     })
     await submit()
     const logged = JSON.stringify(vi.mocked(console.error).mock.calls)
     expect(logged).toContain('validation_error')
+    expect(logged).toContain('your own email address')
     expect(logged).not.toContain('maria@example.com')
   })
 

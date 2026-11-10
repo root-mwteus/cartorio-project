@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import { Resend } from 'resend'
 import { createSupabaseServerClient } from '@/lib/supabase'
 import { checkGlobalRateLimit, checkIpRateLimit } from '@/lib/rate-limit'
+import { readEnv, redactEmails } from '@/lib/env'
 import { siteConfig } from '@/lib/site-config'
 import {
   readContactFormValues,
@@ -21,7 +22,7 @@ export type ContactFormState = {
 }
 
 function requireEnv(name: string) {
-  const value = process.env[name]?.trim()
+  const value = readEnv(name)
   if (!value) throw new Error(`Variável de ambiente ausente: ${name}`)
   return value
 }
@@ -96,7 +97,7 @@ export async function submitContactForm(
 
     // O Resend devolve a recusa no retorno, sem lançar exceção.
     if (emailError) {
-      console.error('Erro ao enviar e-mail:', emailError.name)
+      console.error('Erro ao enviar e-mail:', emailError.name, redactEmails(emailError.message ?? ''))
       return unavailable(values)
     }
 
