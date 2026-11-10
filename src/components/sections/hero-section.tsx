@@ -32,7 +32,7 @@ export function HeroSection() {
           <HeroLot className="lg:col-span-4 lg:mb-2" />
         </div>
 
-        <div className="mt-8 grid gap-10 border-t-2 border-foreground pt-8 lg:mt-10 lg:grid-cols-12 lg:gap-8 lg:pb-16">
+        <div className="mt-8 grid gap-10 border-t-2 border-foreground pb-10 pt-8 sm:pb-12 lg:mt-10 lg:grid-cols-12 lg:gap-8 lg:pb-16">
           <div className="lg:col-span-5">
             <p className="max-w-[34rem] text-pretty text-lg leading-relaxed text-ink-muted">
               Peça certidões, consulte matrículas e protocole títulos pelo Portal ONR, ou venha à

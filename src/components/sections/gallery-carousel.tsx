@@ -26,27 +26,33 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    tag: 'Colaboradores',
-    title: 'Nossa equipe de atendimento',
-    text: 'Equipe preparada para orientar você com agilidade e segurança jurídica.',
+    tag: 'Conscientização & Integração',
+    title: 'Campanha Outubro Rosa',
+    text: 'Encontro de prevenção e conscientização promovido pelo Cartório Algacyr Barros em parceria com serventia convidada.',
     icon: Users,
+    image: '/galeria/equipe-outubro-rosa.jpg',
+    alt: 'Encontro de conscientização do Outubro Rosa promovido pelo Cartório Algacyr Barros em conjunto com equipes de serventias parceiras',
   },
   {
-    tag: 'Ação institucional',
-    title: 'Campanha Solo Seguro, do CNJ',
-    text: 'Apoiando a regularização fundiária e a cidadania patrimonial em Bom Conselho.',
+    tag: 'Ação Social',
+    title: 'Campanha Cartórios de Luz',
+    text: 'Entrega de kits educativos e de cuidados para crianças em Bom Conselho em parceria com a comunidade.',
     icon: Landmark,
+    image: '/galeria/fachada-cartorios-de-luz.jpg',
+    alt: 'Fachada oficial do Cartório Algacyr Barros com a equipe e crianças atendidas pela ação social',
   },
   {
-    tag: 'Dia a dia da serventia',
-    title: 'Conferência e fé pública',
-    text: 'Rigor técnico e cuidado na conferência de títulos e escrituras.',
-    icon: FileCheck2,
+    tag: 'Cidadania e Comunidade',
+    title: 'Ação Social na Zona Rural',
+    text: 'Compromisso e presença junto às famílias da comunidade do Sítio Mata Verde em Bom Conselho.',
+    icon: Users,
+    image: '/galeria/acao-social-mata-verde.jpg',
+    alt: 'Equipe da serventia em ação comunitária com moradores no Sítio Mata Verde, zona rural de Bom Conselho',
   },
   {
     tag: 'Compromisso',
-    title: 'Atendimento acessível',
-    text: 'Canais digitais e recepção presencial dedicados à população.',
+    title: 'Atendimento humanizado e ágil',
+    text: 'Canais digitais pelo WhatsApp oficial e recepção presencial dedicada à população.',
     icon: Accessibility,
   },
 ]
@@ -110,7 +116,7 @@ export function GalleryCarousel() {
       id="galeria"
       aria-labelledby="galeria-title"
       aria-roledescription="carrossel"
-      className="border-t border-rule bg-linen"
+      className="border-y border-rule bg-linen"
       onMouseEnter={() => setHeld(true)}
       onMouseLeave={() => setHeld(false)}
       onFocus={() => setHeld(true)}
@@ -118,49 +124,16 @@ export function GalleryCarousel() {
         if (!event.currentTarget.contains(event.relatedTarget)) setHeld(false)
       }}
     >
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <h2
-              id="galeria-title"
-              className="text-balance font-serif text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
-            >
-              Vida na serventia
-            </h2>
-            <p className="mt-3 max-w-[38rem] text-pretty leading-relaxed text-ink-muted sm:text-lg">
-              A equipe, o trabalho diário e as campanhas de que a serventia participa.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className={control}
-              onClick={() => setPlaying((value) => !value)}
-              aria-label={playing ? 'Pausar a passagem automática' : 'Retomar a passagem automática'}
-            >
-              {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
-            </button>
-            <button
-              type="button"
-              className={control}
-              onClick={() => goTo((active - 1 + slides.length) % slides.length)}
-              aria-label="Slide anterior"
-              aria-controls="galeria-trilha"
-            >
-              <ChevronLeft className="size-5" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              className={control}
-              onClick={() => goTo((active + 1) % slides.length)}
-              aria-label="Próximo slide"
-              aria-controls="galeria-trilha"
-            >
-              <ChevronRight className="size-5" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <h2
+          id="galeria-title"
+          className="text-balance font-serif text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.05] tracking-[-0.015em] text-foreground"
+        >
+          Vida na serventia
+        </h2>
+        <p className="mt-2 max-w-[38rem] text-pretty leading-relaxed text-ink-muted">
+          A equipe, o trabalho diário e as campanhas de que a serventia participa.
+        </p>
 
         <ul
           id="galeria-trilha"
@@ -174,7 +147,7 @@ export function GalleryCarousel() {
             targetRef.current = null
           }}
           aria-live={playing && !held ? 'off' : 'polite'}
-          className="relative mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] sm:gap-6 lg:mt-12 [&::-webkit-scrollbar]:hidden"
+          className="relative mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] sm:gap-6 lg:mt-8 [&::-webkit-scrollbar]:hidden"
         >
           {slides.map((slide, index) => {
             const Icon = slide.icon
@@ -184,7 +157,7 @@ export function GalleryCarousel() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} de ${slides.length}`}
-                className="w-[85%] shrink-0 snap-start sm:w-[62%] lg:w-[calc((100%-3rem)/2.3)]"
+                className="w-[85%] shrink-0 snap-start sm:w-[62%] lg:w-[calc((100%-3rem)/2.6)]"
               >
                 <article className="group h-full border border-rule bg-paper transition-colors duration-200 hover:border-gold/60 motion-reduce:transition-none">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-t-sm bg-wine-deep">
@@ -193,7 +166,7 @@ export function GalleryCarousel() {
                         src={slide.image}
                         alt={slide.alt ?? ''}
                         fill
-                        sizes="(min-width: 1024px) 40vw, (min-width: 640px) 62vw, 85vw"
+                        sizes="(min-width: 1024px) 36vw, (min-width: 640px) 62vw, 85vw"
                         className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
                       />
                     ) : (
@@ -218,7 +191,26 @@ export function GalleryCarousel() {
           })}
         </ul>
 
-        <div className="mt-4 flex justify-center gap-1" role="group" aria-label="Escolher slide">
+        {/* Controles centralizados: o canto direito é do botão flutuante do WhatsApp. */}
+        <div className="mt-4 flex items-center justify-center gap-1 sm:gap-2">
+          <button
+            type="button"
+            className={control}
+            onClick={() => setPlaying((value) => !value)}
+            aria-label={playing ? 'Pausar a passagem automática' : 'Retomar a passagem automática'}
+          >
+            {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
+          </button>
+          <button
+            type="button"
+            className={control}
+            onClick={() => goTo((active - 1 + slides.length) % slides.length)}
+            aria-label="Slide anterior"
+            aria-controls="galeria-trilha"
+          >
+            <ChevronLeft className="size-5" aria-hidden="true" />
+          </button>
+          <div className="flex" role="group" aria-label="Escolher slide">
           {slides.map((slide, index) => (
             <button
               key={slide.title}
@@ -226,15 +218,25 @@ export function GalleryCarousel() {
               onClick={() => goTo(index)}
               aria-label={`Ir para o slide ${index + 1}: ${slide.title}`}
               aria-current={index === active ? 'true' : undefined}
-              className="group/dot inline-flex size-11 items-center justify-center"
+              className="group/dot inline-flex h-11 w-7 items-center justify-center sm:w-11"
             >
               <span
                 className={`block h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${
-                  index === active ? 'w-6 bg-wine' : 'w-1.5 bg-ink-muted/40 group-hover/dot:bg-gold-text'
+                  index === active ? 'w-5 bg-wine sm:w-6' : 'w-1.5 bg-ink-muted/40 group-hover/dot:bg-gold-text'
                 }`}
               />
             </button>
           ))}
+          </div>
+          <button
+            type="button"
+            className={control}
+            onClick={() => goTo((active + 1) % slides.length)}
+            aria-label="Próximo slide"
+            aria-controls="galeria-trilha"
+          >
+            <ChevronRight className="size-5" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </section>
