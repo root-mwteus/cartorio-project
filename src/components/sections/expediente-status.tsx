@@ -45,13 +45,13 @@ export function ExpedienteStatus({
     <span className={`flex items-center gap-2 text-sm ${tone === 'dark' ? 'text-paper/80' : 'text-ink-muted'} ${className}`}>
       <span
         aria-hidden="true"
-        className={`h-2 w-2 ${
-          tone === 'dark'
-            ? status === 'open'
-              ? 'rounded-full bg-[oklch(0.78_0.15_150)]'
-              : 'rounded-full border border-paper/60'
-            : status === 'open'
-              ? 'bg-wine'
+        className={`h-2 w-2 shrink-0 rounded-full ${
+          status === 'open'
+            ? tone === 'dark'
+              ? 'bg-[oklch(0.78_0.15_150)]'
+              : 'bg-[oklch(0.55_0.14_150)]'
+            : tone === 'dark'
+              ? 'border border-paper/60'
               : 'border border-ink-muted'
         }`}
       />

@@ -1,6 +1,7 @@
 import { MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
+import { generalMessage, whatsappLink } from '@/lib/whatsapp'
 import { ExpedienteStatus } from './expediente-status'
 import { HeroLot } from './hero-lot'
 
@@ -42,7 +43,7 @@ export function HeroSection() {
                 size="lg"
                 nativeButton={false}
                 render={
-                  <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <a href={whatsappLink(generalMessage)} target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="h-5 w-5" aria-hidden="true" />
                     Falar no WhatsApp
                     <span className="sr-only">(abre em nova aba)</span>
@@ -73,7 +74,7 @@ export function HeroSection() {
             </div>
             <div className={`col-span-2 sm:col-span-1 ${row}`}>
               <dt className={label}>Atendimento</dt>
-              <dd className="mt-1 font-medium text-foreground">
+              <dd className="mt-1 font-medium tabular-nums text-foreground">
                 {siteConfig.hours.short}
                 <ExpedienteStatus className="mt-1 font-normal" />
               </dd>
