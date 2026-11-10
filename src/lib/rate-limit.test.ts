@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   configs: [] as { limiter: string; prefix: string }[],
 }))
 
-vi.mock('@upstash/redis', () => ({ Redis: { fromEnv: () => ({}) } }))
+vi.mock('@upstash/redis', () => ({ Redis: class {} }))
 vi.mock('@upstash/ratelimit', () => ({
   Ratelimit: class {
     static slidingWindow = (tokens: number, window: string) => `${tokens}/${window}`

@@ -1,7 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 const set = vi.hoisted(() => vi.fn())
-vi.mock('@upstash/redis', () => ({ Redis: { fromEnv: () => ({ set }) } }))
+vi.mock('@upstash/redis', () => ({
+  Redis: class {
+    set = set
+  },
+}))
 
 import { GET } from './route'
 
@@ -41,8 +45,12 @@ describe('keep-alive do Upstash', () => {
   })
 
   it('responde 502 sem quebrar quando o Upstash falha', async () => {
-    vi.spyOn(console, 'error').mockImplementation(() => {})
-    set.mockRejectedValue(new Error('fora do ar'))
+    const log = vi.spyOn(console, 'error').mockImplementation(() => {})
+    set.mockRejectedValue(new TypeError('Headers.append: "Bearer token" is an invalid header value.'))
     expect((await call('Bearer segredo')).status).toBe(502)
+    const logged = JSON.stringify(log.mock.calls)
+    expect(logged).toContain('TypeError')
+    expect(logged).toContain('urlDoUpstash')
+    expect(logged).not.toContain('Bearer token')
   })
 })

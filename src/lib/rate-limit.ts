@@ -1,5 +1,5 @@
 import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
+import { createRedis } from './redis'
 
 export type RateLimitResult = 'allowed' | 'limited' | 'unavailable'
 
@@ -7,20 +7,19 @@ let limiters: { perIp: Ratelimit; global: Ratelimit } | undefined
 
 // Criados sob demanda: sem as chaves, a falha fica no envio, tratada por quem chama.
 function getLimiters() {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    throw new Error('Variáveis do Upstash ausentes')
-  }
+  if (limiters) return limiters
 
-  limiters ??= {
+  const redis = createRedis()
+  limiters = {
     // Limita a 5 envios a cada 10 minutos, por IP.
     perIp: new Ratelimit({
-      redis: Redis.fromEnv(),
+      redis,
       limiter: Ratelimit.slidingWindow(5, '10 m'),
       prefix: 'ratelimit:contact-form',
     }),
     // Protege as cotas de Supabase e Resend contra ataques com vários IPs.
     global: new Ratelimit({
-      redis: Redis.fromEnv(),
+      redis,
       limiter: Ratelimit.slidingWindow(100, '1 h'),
       prefix: 'ratelimit:contact-form:global',
     }),
