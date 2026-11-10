@@ -60,7 +60,15 @@ export default function PrivacidadePage() {
             </dd>
           </div>
           <div>
-            <dt className="inline font-medium text-foreground">Endereço: </dt>
+            <dt className="inline font-medium text-foreground">CNPJ: </dt>
+            <dd className="inline tabular-nums">{privacy.encarregado.cnpj}</dd>
+          </div>
+          <div>
+            <dt className="inline font-medium text-foreground">Responsável: </dt>
+            <dd className="inline">{privacy.encarregado.responsible}</dd>
+          </div>
+          <div>
+            <dt className="inline font-medium text-foreground">Endereço para correspondência: </dt>
             <dd className="inline">
               <Filled value={privacy.encarregado.address} pending="endereço do Encarregado" />
             </dd>
@@ -68,7 +76,9 @@ export default function PrivacidadePage() {
           <div>
             <dt className="inline font-medium text-foreground">E-mail: </dt>
             <dd className="inline">
-              <Filled value={privacy.encarregado.email} pending="e-mail do Encarregado" />
+              <a className="underline hover:text-foreground" href={`mailto:${privacy.encarregado.email}`}>
+                {privacy.encarregado.email}
+              </a>
             </dd>
           </div>
         </dl>
