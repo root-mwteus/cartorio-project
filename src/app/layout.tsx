@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Newsreader, Public_Sans } from 'next/font/google'
+import { Darker_Grotesque, Newsreader, Public_Sans } from 'next/font/google'
 import { WhatsAppFloating } from '@/components/ui/whatsapp-floating'
 import { serializeJsonLd } from '@/lib/json-ld'
 import { siteConfig } from '@/lib/site-config'
@@ -17,6 +17,12 @@ const display = Newsreader({
   style: ['normal', 'italic'],
   axes: ['opsz'],
   variable: '--font-display',
+})
+
+// Voz da landing: grotesca larga e pesada para títulos, legível em corpo grande.
+const grotesk = Darker_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-grotesque',
 })
 
 const pageTitle = `${siteConfig.name} | ${siteConfig.tradeName}`
@@ -97,7 +103,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       data-scroll-behavior="smooth"
-      className={`${body.variable} ${display.variable} light scroll-smooth bg-background`}
+      className={`${body.variable} ${display.variable} ${grotesk.variable} light scroll-smooth bg-background`}
     >
       <body className="font-sans antialiased">
         <a
