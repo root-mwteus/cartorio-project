@@ -45,6 +45,7 @@
 @theme inline {
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-display), Georgia, 'Times New Roman', serif;
+  --font-grotesk: var(--font-grotesque), ui-sans-serif, system-ui, sans-serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -119,7 +120,7 @@
   }
   /* Âncoras não podem parar embaixo do cabeçalho fixo. */
   [id] {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 7rem;
   }
 }
 

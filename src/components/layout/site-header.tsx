@@ -3,27 +3,30 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
+import { generalMessage, whatsappLink } from "@/lib/whatsapp";
+import { ExpedienteStatus } from "@/components/sections/expediente-status";
 
 const navLinks = [
+  { label: "Assuntos", href: "/#assuntos" },
   { label: "Serviços", href: "/#servicos" },
-  { label: "Prazos", href: "/#prazos" },
-  { label: "Contato", href: "/#contato" },
-  { label: "Emolumentos", href: "/emolumentos" },
-  { label: "Dúvidas", href: "/faq" },
-  { label: "Sobre", href: "/sobre" },
+  { label: "Certidões", href: "/#prazos" },
+  { label: "Como funciona", href: "/#como-funciona" },
+  { label: "Onde estamos", href: "/#contato" },
 ];
 
 const mobileOnlyLinks = [
   { label: "Início", href: "/#inicio" },
-  { label: "Agendar visita", href: "/agendar" },
-  { label: "Enviar documentos", href: "/enviar-documentos" },
+  { label: "Emolumentos", href: "/emolumentos" },
+  { label: "Dúvidas frequentes", href: "/faq" },
+  { label: "Sobre a serventia", href: "/sobre" },
   { label: "Ouvidoria", href: "/ouvidoria" },
   { label: "Aviso de Privacidade", href: "/privacidade" },
 ];
+
+const sectionIds = ["inicio", "assuntos", "servicos", "prazos", "como-funciona", "contato"];
 
 function sectionIdFromHref(href: string) {
   return href.startsWith("/#") ? href.replace("/#", "") : null;
@@ -35,7 +38,7 @@ export function SiteHeader() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const sections = ["inicio", "servicos", "prazos", "contato"]
+    const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null);
 
@@ -61,31 +64,29 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <Link href="/#inicio" className="flex min-h-11 min-w-0 items-center gap-2.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center">
-            <Image
-              src="/logo-icon-v3.png"
-              alt=""
-              width={36}
-              height={36}
-              priority
-              className="h-full w-full object-contain"
-            />
+    <header className="sticky top-0 z-50 bg-wine-deep font-grotesk text-paper">
+      <div className="hidden h-9 items-center justify-between border-b border-gold/25 px-5 text-[0.95rem] font-bold sm:flex sm:px-8 lg:px-16">
+        <ExpedienteStatus tone="dark" className="font-sans" />
+        <p className="flex gap-7 tabular-nums text-paper/75">
+          <span>CNS {siteConfig.cns}</span>
+          <span>
+            {siteConfig.address.city}/{siteConfig.address.state}
           </span>
-          <span className="flex min-w-0 flex-col leading-tight">
-            <span className="font-serif text-base font-medium text-foreground">
-              {siteConfig.tradeName}
-            </span>
-            <span className="text-xs tabular-nums text-muted-foreground">
-              CNS {siteConfig.cns}
-              <span className="hidden sm:inline">, {siteConfig.address.city}/{siteConfig.address.state}</span>
-            </span>
+          <a href={`tel:+55${siteConfig.phoneDisplay.replace(/\D/g, "")}`} className="text-paper hover:text-gold">
+            {siteConfig.phoneDisplay}
+          </a>
+        </p>
+      </div>
+
+      <div className="flex h-18 items-center justify-between gap-3 border-b border-gold/25 px-5 sm:px-8 lg:px-16">
+        <Link href="/#inicio" className="flex min-h-11 min-w-0 items-center gap-3">
+          <Image src="/logo-icon-v3.png" alt="" width={38} height={38} priority className="h-9.5 w-9.5 shrink-0 object-contain" />
+          <span className="truncate text-[1.6rem] font-extrabold leading-none tracking-[-0.01em]">
+            {siteConfig.tradeName}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -94,8 +95,8 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative py-2 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-wine after:transition-transform after:duration-200 hover:text-foreground",
-                  active ? "text-foreground after:scale-x-100" : "text-muted-foreground after:scale-x-0 hover:after:scale-x-100",
+                  "relative py-2 text-xl font-bold transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-gold after:transition-transform after:duration-200 hover:text-paper",
+                  active ? "text-paper after:scale-x-100" : "text-paper/75 after:scale-x-0 hover:after:scale-x-100",
                 )}
               >
                 {link.label}
@@ -105,31 +106,26 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1">
-          <Button
-            size="sm"
-            nativeButton={false}
-            className="h-11 w-11 rounded-sm px-0 sm:h-10 sm:w-auto sm:gap-2 sm:px-4 sm:text-sm"
-            render={
-              <Link href="/#contato">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only sm:not-sr-only">Contato</span>
-              </Link>
-            }
-          />
+          <a
+            href={whatsappLink(generalMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-gold px-3 text-xl font-extrabold text-gold transition-colors hover:bg-gold hover:text-wine-deep sm:px-5"
+          >
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            <span className="sr-only sm:not-sr-only">Falar no WhatsApp</span>
+            <span className="sr-only"> (abre em nova aba)</span>
+          </a>
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-sm text-paper/80 transition-colors hover:text-paper lg:hidden"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
-            ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
-            )}
+            {isMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -138,20 +134,17 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           aria-label="Navegação principal mobile"
-          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-paper px-4 py-3 sm:px-6 lg:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-gold/25 bg-wine-deep px-5 py-3 sm:px-8 lg:hidden"
         >
           <ul className="flex flex-col">
             {[...mobileOnlyLinks.slice(0, 1), ...navLinks, ...mobileOnlyLinks.slice(1)].map((link) => {
               const active = isActive(link.href);
               return (
-                <li key={link.href} className="border-b border-rule last:border-b-0">
+                <li key={link.href} className="border-b border-gold/20 last:border-b-0">
                   <Link
                     href={link.href}
                     aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "block py-3.5 font-serif text-xl hover:text-foreground",
-                      active ? "italic text-foreground" : "text-ink-muted",
-                    )}
+                    className={cn("block py-3.5 text-[1.7rem] font-extrabold leading-none", active ? "text-gold" : "text-paper/85 hover:text-paper")}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
