@@ -1,24 +1,13 @@
 import Image from 'next/image'
 import { SectionHeading, sectionPad } from './primitives'
 
+// Fotos com crianças só entram com autorização dos responsáveis (LGPD, art. 14).
 const photos = [
-  {
-    src: '/galeria/fachada-cartorios-de-luz.jpg',
-    alt: 'Fachada do Cartório Algacyr Barros com a equipe e crianças atendidas pela campanha Cartórios de Luz',
-    caption: 'Campanha Cartórios de Luz, na sede',
-    height: 'sm:h-[28rem]',
-  },
   {
     src: '/galeria/equipe-outubro-rosa.jpg',
     alt: 'Encontro do Outubro Rosa promovido pelo Cartório Algacyr Barros com equipes de serventias parceiras',
     caption: 'Outubro Rosa, com serventias parceiras',
     height: 'sm:h-[24rem]',
-  },
-  {
-    src: '/galeria/acao-social-mata-verde.jpg',
-    alt: 'Equipe da serventia em ação comunitária com moradores do Sítio Mata Verde, zona rural de Bom Conselho',
-    caption: 'Ação social no Sítio Mata Verde',
-    height: 'sm:h-[20rem]',
   },
 ]
 
@@ -32,7 +21,9 @@ export function Gallery() {
         accent="de Bom Conselho."
         lead="Além do balcão, a serventia participa de campanhas e ações sociais na cidade e na zona rural."
       />
-      <ul className="mt-12 grid gap-10 sm:grid-cols-3 sm:items-end sm:gap-8 lg:mt-14">
+      <ul
+        className={`mt-12 grid gap-10 sm:items-end sm:gap-8 lg:mt-14 ${photos.length > 2 ? 'sm:grid-cols-3' : 'max-w-md'}`}
+      >
         {photos.map((photo, index) => (
           <li key={photo.src}>
             <figure>
@@ -42,7 +33,7 @@ export function Gallery() {
                   alt={photo.alt}
                   fill
                   sizes="(min-width: 640px) 33vw, 100vw"
-                  className={`object-cover ${index === 0 ? 'object-top' : 'object-center'}`}
+                  className="object-cover object-center"
                 />
               </div>
               <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-ink pt-3 font-grotesk">
