@@ -157,3 +157,10 @@
   }
 }
 
+
+/* Checklists impressos ou salvos em PDF saem em papel branco. */
+@media print {
+  body {
+    background: white;
+  }
+}
