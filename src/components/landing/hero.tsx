@@ -75,14 +75,17 @@ export function Hero() {
 
           <figure className="relative mx-auto w-full max-w-sm self-center lg:max-w-none">
             <div className="rounded-t-full border border-gold p-4">
-              <div className="relative aspect-[3/4.4] overflow-hidden rounded-t-full">
+              {/* shortcut: brasão no lugar da foto da fachada, que tinha crianças identificáveis
+                  (LGPD, art. 14); trocar por uma foto da fachada sem pessoas quando a serventia enviar. */}
+              <div className="relative flex aspect-[3/4.4] items-center justify-center overflow-hidden rounded-t-full bg-[oklch(0.22_0.08_18)]">
+                <div aria-hidden="true" className="absolute inset-6 rounded-t-full border border-gold/25" />
                 <Image
-                  src="/galeria/fachada-cartorios-de-luz.jpg"
-                  alt={`Fachada do ${siteConfig.tradeName}, no Centro de ${siteConfig.address.city}`}
-                  fill
+                  src="/logo-icon-v3.png"
+                  alt=""
+                  width={160}
+                  height={160}
                   priority
-                  sizes="(min-width: 1024px) 30rem, 24rem"
-                  className="object-cover object-top"
+                  className="relative size-28 object-contain sm:size-36"
                 />
               </div>
             </div>

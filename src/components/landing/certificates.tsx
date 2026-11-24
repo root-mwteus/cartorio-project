@@ -23,7 +23,7 @@ const rows = [
 export function Certificates() {
   return (
     <section id="prazos" aria-labelledby="prazos-title" className={`bg-paper py-20 lg:py-28 ${sectionPad}`}>
-      <div className="grid gap-12 lg:grid-cols-[24rem_minmax(0,1fr)] lg:gap-20">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[24rem_minmax(0,1fr)] xl:gap-20">
         <div className="flex flex-col gap-5">
           <Folio>Fl. 4 · Certidões e prazos</Folio>
           <h2
@@ -66,7 +66,7 @@ export function Certificates() {
                   </th>
                   <td className="hidden py-6 pr-6 text-xl font-semibold leading-snug text-ink-muted md:table-cell">{row.use}</td>
                   <td
-                    className={`whitespace-nowrap py-6 pl-4 text-right leading-tight ${
+                    className={`w-[7.5rem] text-balance py-6 pl-4 text-right leading-tight xl:w-auto xl:whitespace-nowrap ${
                       row.deadline ? 'text-[1.6rem] font-black text-wine' : 'text-xl font-extrabold text-ink-muted'
                     }`}
                   >
