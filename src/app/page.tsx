@@ -8,6 +8,7 @@ import { HowItWorks } from '@/components/landing/how-it-works'
 import { ChecklistsTeaser } from '@/components/landing/checklists-teaser'
 import { OnlineServices } from '@/components/landing/online-services'
 import { Gallery } from '@/components/landing/gallery'
+import { FaqSection } from '@/components/landing/faq-section'
 import { Location } from '@/components/landing/location'
 import { OmbudsmanBand } from '@/components/landing/ombudsman-band'
 
@@ -24,6 +25,7 @@ export default function Page() {
         <ChecklistsTeaser />
         <OnlineServices />
         <Gallery />
+        <FaqSection />
         <Location />
         <OmbudsmanBand />
       </main>
