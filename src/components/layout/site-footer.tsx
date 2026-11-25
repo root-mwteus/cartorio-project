@@ -16,7 +16,7 @@ const linkClass = 'inline-block py-1 text-xl font-bold text-paper transition-col
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[oklch(0.2_0.06_18)] font-grotesk text-paper">
+    <footer className="bg-[oklch(0.2_0.06_18)] font-grotesk text-paper print:hidden">
       <div className="px-5 pb-24 pt-16 sm:px-8 lg:pb-10 lg:pl-32 lg:pr-16 lg:pt-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_0.8fr] lg:gap-16">
           <div className="flex flex-col gap-4">

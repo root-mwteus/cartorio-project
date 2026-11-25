@@ -11,14 +11,15 @@ import { ExpedienteStatus } from "@/components/sections/expediente-status";
 
 const navLinks = [
   { label: "Assuntos", href: "/#assuntos" },
+  { label: "Checklists", href: "/checklists" },
   { label: "Serviços", href: "/#servicos" },
   { label: "Certidões", href: "/#prazos" },
-  { label: "Como funciona", href: "/#como-funciona" },
   { label: "Onde estamos", href: "/#contato" },
 ];
 
 const mobileOnlyLinks = [
   { label: "Início", href: "/#inicio" },
+  { label: "Como funciona", href: "/#como-funciona" },
   { label: "Emolumentos", href: "/emolumentos" },
   { label: "Dúvidas frequentes", href: "/faq" },
   { label: "Sobre a serventia", href: "/sobre" },
@@ -60,11 +61,11 @@ export function SiteHeader() {
 
   const isActive = (href: string) => {
     const section = sectionIdFromHref(href);
-    return section ? pathname === "/" && activeSection === section : pathname === href;
+    return section ? pathname === "/" && activeSection === section : pathname.startsWith(href);
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-wine-deep font-grotesk text-paper">
+    <header className="sticky top-0 z-50 bg-wine-deep font-grotesk text-paper print:hidden">
       <div className="hidden h-9 items-center justify-between border-b border-gold/25 px-5 text-[0.95rem] font-bold sm:flex sm:px-8 lg:px-16">
         <ExpedienteStatus tone="dark" className="font-sans" />
         <p className="flex gap-7 tabular-nums text-paper/75">

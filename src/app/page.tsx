@@ -5,6 +5,7 @@ import { Topics } from '@/components/landing/topics'
 import { Services } from '@/components/landing/services'
 import { Certificates } from '@/components/landing/certificates'
 import { HowItWorks } from '@/components/landing/how-it-works'
+import { ChecklistsTeaser } from '@/components/landing/checklists-teaser'
 import { Gallery } from '@/components/landing/gallery'
 import { Location } from '@/components/landing/location'
 import { OmbudsmanBand } from '@/components/landing/ombudsman-band'
@@ -19,6 +20,7 @@ export default function Page() {
         <Services />
         <Certificates />
         <HowItWorks />
+        <ChecklistsTeaser />
         <Gallery />
         <Location />
         <OmbudsmanBand />
