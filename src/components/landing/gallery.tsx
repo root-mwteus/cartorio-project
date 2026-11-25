@@ -13,10 +13,10 @@ const photos = [
 
 export function Gallery() {
   return (
-    <section aria-labelledby="galeria-title" className={`bg-paper py-20 lg:py-28 ${sectionPad}`}>
+    <section aria-labelledby="galeria-title" className={`border-t border-rule bg-paper py-20 lg:py-28 ${sectionPad}`}>
       <SectionHeading
         id="galeria-title"
-        folio="Fl. 7 · Na cidade"
+        folio="Fl. 8 · Na cidade"
         title="Presente na vida"
         accent="de Bom Conselho."
         lead="Além do balcão, a serventia participa de campanhas e ações sociais na cidade e na zona rural."
@@ -38,7 +38,7 @@ export function Gallery() {
               </div>
               <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-ink pt-3 font-grotesk">
                 <span className="text-sm font-extrabold uppercase tracking-[0.14em] text-gold-text">
-                  Fl. 7.{index + 1}
+                  Fl. 8.{index + 1}
                 </span>
                 <span className="text-right text-xl font-bold leading-tight text-ink">{photo.caption}</span>
               </figcaption>

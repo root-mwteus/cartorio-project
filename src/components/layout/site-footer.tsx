@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/site-config'
 import { generalMessage, whatsappLink } from '@/lib/whatsapp'
 
 const pages = [
+  { label: 'Checklists de documentos', href: '/checklists' },
   { label: 'Sobre a serventia', href: '/sobre' },
   { label: 'Tabela de emolumentos', href: '/emolumentos' },
   { label: 'Dúvidas frequentes', href: '/faq' },
@@ -18,6 +19,9 @@ export function SiteFooter() {
   return (
     <footer className="bg-[oklch(0.2_0.06_18)] font-grotesk text-paper print:hidden">
       <div className="px-5 pb-24 pt-16 sm:px-8 lg:pb-10 lg:pl-32 lg:pr-16 lg:pt-20">
+        <p className={`${heading} mb-10 border-b border-gold/30 pb-5`}>
+          República Federativa do Brasil · Estado de Pernambuco
+        </p>
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_0.8fr] lg:gap-16">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3.5">
@@ -69,11 +73,30 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-1 border-t border-gold/30 pt-5 text-base font-semibold text-paper/55 sm:flex-row sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}
-          </p>
-          <p>Fiscalização: Corregedoria Geral da Justiça de Pernambuco</p>
+        <div className="mt-14 flex flex-col gap-3 border-t border-gold/30 pt-5 text-base font-semibold text-paper/55">
+          <ul className="flex flex-wrap gap-x-6 gap-y-1 text-paper/80">
+            <li>
+              <a href={siteConfig.oversight.seloUrl} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                Conferir a autenticidade do selo (TJPE)<span className="sr-only"> (abre em nova aba)</span>
+              </a>
+            </li>
+            <li>
+              <a href={siteConfig.oversight.justicaAbertaUrl} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                Transparência: Justiça Aberta (CNJ)<span className="sr-only"> (abre em nova aba)</span>
+              </a>
+            </li>
+            <li>
+              <Link href="/privacidade" className="hover:text-gold">
+                Lei nº 13.709/2018 (LGPD) · Provimento CNJ nº 134/2022
+              </Link>
+            </li>
+          </ul>
+          <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} {siteConfig.name}
+            </p>
+            <p>Fiscalização: Corregedoria Geral da Justiça de Pernambuco</p>
+          </div>
         </div>
       </div>
     </footer>

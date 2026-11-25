@@ -59,6 +59,16 @@ export const siteConfig = {
       'https://portal.tjpe.jus.br/c/document_library/get_file?uuid=d40ef27b-907a-c2f0-ccf3-a3e082dcd030&groupId=29010',
     corregedoriaUrl: 'https://portal.tjpe.jus.br/web/corregedoria/perguntas-frequentes',
     ouvidoriaUrl: 'https://portal.tjpe.jus.br/web/ouvidoria',
+    // Conferidos nos portais do TJPE em 24/11/2026.
+    ouvidoriaPhone: '0800 081 52 51',
+    ouvidoriaShortPhone: '159',
+    ouvidoriaHours: 'das 8h às 17h',
+    ouvidoriaWhatsappDisplay: '(81) 99159-5727',
+    ouvidoriaWhatsappUrl: 'https://wa.me/5581991595727',
+    corregedoriaFaleComUrl: 'https://scase.tjpe.jus.br/falecom',
+    corregedoriaPhone: '(81) 3182-0698',
+    seloUrl: 'https://sicase.tjpe.jus.br/sicase/externo/autenticidadeselo/form_validarautenticidadeselo.jsf',
+    justicaAbertaUrl: 'https://justicaaberta.cnj.jus.br/',
   },
   // Provimento CNJ 134/2022, arts. 17 e 18. Campo null aparece marcado como pendente em /privacidade.
   privacy: {
