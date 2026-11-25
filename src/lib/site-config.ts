@@ -27,6 +27,12 @@ export const siteConfig = {
     ofTitle: 'do Oficial Registrador e Tabelião Titular',
     toTitle: 'ao Oficial Registrador e Tabelião Titular',
   },
+  // Informados pela serventia em 24/11/2026.
+  substitutes: [
+    'Jandie Araújo Bezerra Vieira de Barros',
+    'José Pereira de Barros Neto',
+    'Artur Augusto Sampaio Dias Arraes',
+  ],
   whatsappUrl: 'https://wa.me/5587981198252',
   onrUrl: 'https://www.registrodeimoveis.org.br/bomconselho',
   // Ato TJPE nº 1556/2025: tabela do exercício de 2026.

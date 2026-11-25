@@ -40,6 +40,41 @@ export default function SobrePage() {
           nossos serviços.
         </p>
       </div>
+
+      <section aria-labelledby="ficha-title" className="mt-12">
+        <h2 id="ficha-title" className="font-serif text-2xl text-foreground">
+          Ficha da serventia
+        </h2>
+        <dl className="mt-4 border-t-2 border-foreground">
+          {[
+            { term: 'Denominação', value: siteConfig.name },
+            { term: 'Nome fantasia', value: siteConfig.tradeName },
+            { term: siteConfig.officer.title, value: siteConfig.officer.name },
+            {
+              term: 'Substitutos',
+              value: (
+                <ul>
+                  {siteConfig.substitutes.map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
+              ),
+            },
+            { term: 'CNS', value: siteConfig.cns },
+            { term: 'CNPJ', value: siteConfig.cnpj },
+            { term: 'Comarca', value: siteConfig.comarca },
+            {
+              term: 'Endereço',
+              value: `${siteConfig.address.street}, ${siteConfig.address.neighborhood}, ${siteConfig.address.city}/${siteConfig.address.state}, CEP ${siteConfig.address.postalCode}`,
+            },
+          ].map((row) => (
+            <div key={row.term} className="grid gap-1 border-b border-rule py-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-6">
+              <dt className="text-ink-muted">{row.term}</dt>
+              <dd className="tabular-nums text-foreground">{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
     </article>
   )
 }
