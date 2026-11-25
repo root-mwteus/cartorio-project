@@ -48,6 +48,9 @@ export function SiteFooter() {
             <p className="text-xl font-semibold leading-snug text-paper/85">
               {siteConfig.officer.title}: {siteConfig.officer.name}
             </p>
+            <p className="text-xl font-semibold leading-snug text-paper/85">
+              Substitutos: {new Intl.ListFormat('pt-BR', { type: 'conjunction' }).format(siteConfig.substitutes)}
+            </p>
             <p className="text-xl font-semibold tabular-nums text-paper/85">
               CNS {siteConfig.cns} · CNPJ {siteConfig.cnpj}
             </p>
