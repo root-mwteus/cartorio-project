@@ -20,6 +20,7 @@ const navLinks = [
 const mobileOnlyLinks = [
   { label: "Início", href: "/#inicio" },
   { label: "Como funciona", href: "/#como-funciona" },
+  { label: "Serviços online", href: "/#servicos-online" },
   { label: "Emolumentos", href: "/emolumentos" },
   { label: "Dúvidas frequentes", href: "/faq" },
   { label: "Sobre a serventia", href: "/sobre" },

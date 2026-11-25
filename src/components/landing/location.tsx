@@ -20,7 +20,7 @@ export function Location() {
       <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_28rem] lg:gap-18">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
-            <Folio>Fl. 8 · Onde estamos</Folio>
+            <Folio>Fl. 9 · Onde estamos</Folio>
             <h2
               id="contato-title"
               className="text-balance font-grotesk text-[clamp(2.75rem,6vw,4.75rem)] font-black leading-[0.88] tracking-[-0.03em] text-ink"
